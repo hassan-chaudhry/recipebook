@@ -7,8 +7,6 @@ public class MainProgram {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        File fileName = new File("inputFile.txt");
-
         RecipeRetrieval data = new RecipeRetrieval();
         ArrayList<Recipes> hold = data.LoadRecipes();
     }

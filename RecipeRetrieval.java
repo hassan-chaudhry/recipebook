@@ -10,7 +10,7 @@ public class RecipeRetrieval {
 
         // boolean check = false;
 
-        String fileName = "inputFile.txt";
+        String fileName = "recipes.txt";
         String line = null;
 
         try {
