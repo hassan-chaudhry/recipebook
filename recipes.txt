@@ -1,0 +1,8 @@
+“Peanut Butter and Jelly”; “A sandwich made of peanut butter and jelly.”; “2
+slices sandwich bread, 2 tablespoons peanut butter, 2 teaspoons grape jelly or 2 teaspoons strawberry jam”; “1. Spread the peanut butter on one piece of bread. 2. Spread the jelly on the other side. 3. Put the two pieces of bread together to form a sandwich.”
+
+“Mac and Cheese”; “A comfort dish consisting of macaroni pasta and cheese sauce”; “macaroni, 
+butter, flour, salt, ground black pepper, milk, cheese”; “1.Preheat the oven. Preheat to 325 degrees and lightly grease a square baking dish. 2. Cook the macaroni. Slightly undercook your noodles (about 1 minute under al-dente). Drain and set aside. 3. Make the roux. Melt the butter in a medium saucepan over medium heat. Blend in the flour, salt, and pepper. Cook for two minutes. 4. Add milk and cheese. Stir in milk slowly, stirring constantly. Remove from heat. Add 1 cup shredded cheese to the sauce and stir just until melted. Add the cooked macaroni noodles and toss to coat them in the sauce. 5. Pour into baking dish.  Pour half or the pasta mixture into the prepared baking dish. Sprinkle ½ cup cheese over the top. Pour remaining pasta over it and sprinkle with remaining cheese.”
+
+“Lemonade”; “A sweet lemon-flavored drink”; “1 cup sugar, 1 cup water, 1 cup freshly squeezed lemon juice, 2 to 3 cups cold water, to dilute”; “1. Make the simple syrup by placing the sugar and water in a small saucepan and bring it to a simmer. Stir so that the sugar dissolves completely and remove from heat. 2. Juice the lemons. 3. Mix the lemonade by pouring the juice and the simple syrup sugar water into a serving pitcher. 4. Chill and serve.”
+
