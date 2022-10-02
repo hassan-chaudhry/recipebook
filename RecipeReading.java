@@ -25,7 +25,10 @@ public class RecipeReading {
 	public static void readSteps(Recipe recipe) {
 		String steps[] = recipe.getSteps.split(".  "); // parsing steps and splitting them
 
+<<<<<<< HEAD
 		obj = new Scanner(System.in);
+=======
+>>>>>>> 7f763853d5fac4f804d9dba66986bdd272144679
 		for (int i = 0; i < steps.length; i++) {
 			System.out.println(steps[i]); // print each step one at a time
 
