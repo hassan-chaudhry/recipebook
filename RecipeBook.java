@@ -24,8 +24,8 @@ public class RecipeBook {
                 System.out.println(command);
         
                 if (command.equals("c")) {
-                    // RecipeCreation.createRecipe(); // create a recipe 
-                    System.out.println("Create tab opened");
+                    RecipeCreation.createRecipe(); // create a recipe 
+                    // System.out.println("Create tab opened");
                 }
                 else if (command.equals("r")) { // retrieve recipe in two ways
                     // recipeRetrieval.retrievalInterface(obj, recipeList);
