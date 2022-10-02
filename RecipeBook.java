@@ -74,7 +74,7 @@ public class RecipeBook {
                                         String read = obj.nextLine();
                                         read = read.toLowerCase();
 
-                                        String steps[] = recipe.getSteps().split(".  "); // parsing steps and splitting them
+                                        String steps[] = recipe.getSteps().split("(?<=.  )"); // parsing steps and splitting them
 
 
                                         if (read.equals("1")) {
@@ -83,6 +83,7 @@ public class RecipeBook {
                                             for (String s: steps){
                                                 System.out.println("  "+s);
                                             }
+                                            System.out.println();
                                         }
                                         else if (read.equals("2")) {
                                 
