@@ -2,7 +2,7 @@ public class RecipeReading {
 
 	private static Scanner obj;
 
-	public static void readRecipe(Recipe recipe) {
+	public static void readRecipe(Recipes recipe) {
 		obj = new Scanner(System.in);
 		System.out.println("Would you like to: (1) read entire recipe or (2) step through intructions"); // ask user how to read recipe
 		String read = obj.nextLine();
@@ -18,11 +18,11 @@ public class RecipeReading {
 		obj.close();
 	}
 
-	public static void readEntire(Recipe recipe) {
+	public static void readEntire(Recipes recipe) {
 		System.out.println(recipe.getName, recipe.getDescription, recipe.getIngredients, recipe.getSteps);
 	}
 
-	public static void readSteps(Recipe recipe) {
+	public static void readSteps(Recipes recipe) {
 		String steps[] = recipe.getSteps.split(".  "); // parsing steps and splitting them
 
 		obj = new Scanner(System.in);
