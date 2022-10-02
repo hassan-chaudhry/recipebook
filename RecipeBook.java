@@ -21,7 +21,11 @@ public class RecipeBook {
         
                 System.out.println("Would you like to: (c)reate, (r)etrieve");
                 String command = obj.nextLine();
-                System.out.println(command);
+                while (!command.equals("c") && !command.equals("r")){
+                    System.out.println("Invalid Input!");
+                    command = obj.nextLine();
+                }
+                //System.out.println(command);
         
                 if (command.equals("c")) {
                     RecipeCreation.createRecipe(); // create a recipe 
@@ -33,7 +37,7 @@ public class RecipeBook {
                     // String retrieve = obj.nextLine();
                     // retrieve = retrieve.toLowerCase();
         
-		    Recipes recipe = new Recipes();
+		            Recipes recipe = new Recipes();
         
                     while (true) {
                         System.out.println("-------------- Recipe Retrieval --------------");
@@ -41,7 +45,19 @@ public class RecipeBook {
                         System.out.println("2. Search For a recipe");
                         System.out.println("3. Exit");
                         System.out.print("Please type 1 or 2 or 3: ");
-                        int choice = obj.nextInt();
+
+                        int choice = 0;
+                        while(obj.hasNextInt())  //循环输入整型数字
+                        {  
+                            choice = obj.nextInt();  
+                            if (choice != 1 && choice != 2 && choice != 3) {
+                                System.out.println("Sorry, incorrect input. Try again");
+                                System.out.println();
+                            } else {
+                                break;
+                            }
+                        }
+                        
                         obj.nextLine();
                         System.out.println();
                         if (choice != 1 && choice != 2 && choice != 3) {
