@@ -10,8 +10,13 @@ public class RecipeCreation {
     public static void createRecipe(){
         System.out.println("\nPlease enter the name of your recipe: ");
         String name = scan.nextLine();
+        while(duplicatedName(name)){
+            System.out.println("The recipe already exists! Please enter a new name: ");
+            name = scan.nextLine();
+        }
         name = name.substring(0, 1).toUpperCase()+name.substring(1);
         //System.out.println("You entered: "+name);
+        //System.out.println(duplicatedName(name));
 
         System.out.println("\nPlease enter the description of your recipe: ");
         String description = scan.nextLine();
@@ -45,6 +50,16 @@ public class RecipeCreation {
             System.out.println("Recipe Saving Error!");
             e.printStackTrace();
         }
+    }
+
+    public static Boolean duplicatedName(String name){
+        ArrayList<Recipes> reList = RecipeRetrieval.LoadRecipes();
+        for (Recipes r: reList){
+            if (r.getName().equals(name)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static String formattedSentence(String str){
