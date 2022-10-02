@@ -22,7 +22,7 @@ public class RecipeReading {
 	public static void readSteps(Recipe recipe) {
 		String steps[] = recipe.getSteps.split(".  "); // parsing steps and splitting them
 
-		for (int i; i < steps.length; i++) {
+		for (int i = 0; i < steps.length; i++) {
 			System.out.println(steps[i]); // print each step one at a time
 
 			obj = new Scanner(System.in);
