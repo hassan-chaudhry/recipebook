@@ -14,7 +14,6 @@ private static Scanner obj;
 			RecipeCreation.createRecipe(); // create a recipe 
 		}
 		else if (command.equals("r")) { // retrieve recipe in two ways
-			obj = new Scanner(System.in);
 			System.out.println("Would you like to: (1) search for a recipe or (2) browse all recipes"); // ask user how to retrieve recipe
 			String retrieve = obj.nextLine();
 			retrieve = retrieve.toLowerCase();
@@ -29,6 +28,8 @@ private static Scanner obj;
 
 			RecipeReading.readRecipe(recipe); // read recipe in two eays
 		}
+	
+	obj.close();
 
     }
 }

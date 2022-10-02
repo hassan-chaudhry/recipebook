@@ -1,4 +1,5 @@
 public class RecipeReading {
+
 	private static Scanner obj;
 
 	public static void readRecipe(Recipe recipe) {
@@ -13,6 +14,8 @@ public class RecipeReading {
 		else if (read.equals("2")) {
 			readSteps(recipe); // step through instructions
 		}
+
+		obj.close();
 	}
 
 	public static void readEntire(Recipe recipe) {
@@ -22,10 +25,10 @@ public class RecipeReading {
 	public static void readSteps(Recipe recipe) {
 		String steps[] = recipe.getSteps.split(".  "); // parsing steps and splitting them
 
-		for (int i; i < steps.length; i++) {
+		obj = new Scanner(System.in);
+		for (int i = 0; i < steps.length; i++) {
 			System.out.println(steps[i]); // print each step one at a time
 
-			obj = new Scanner(System.in);
 			System.out.println("Next step? (yes/no)"); // ask user if they want to see next step
 			String next = obj.nextLine();
 			next= next.toLowerCase();
@@ -38,5 +41,7 @@ public class RecipeReading {
 			}
 
 		}
+
+		obj.close();
 	}
 }
