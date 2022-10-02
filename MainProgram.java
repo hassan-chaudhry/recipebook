@@ -9,5 +9,8 @@ public class MainProgram {
 
         RecipeRetrieval data = new RecipeRetrieval();
         ArrayList<Recipes> hold = data.LoadRecipes();
+        recipeList = hold;
+        RecipeRetrieval recipeRetrieval = new RecipeRetrieval();
+        recipeRetrieval.retrievalInterface(input, recipeList);
     }
 }
