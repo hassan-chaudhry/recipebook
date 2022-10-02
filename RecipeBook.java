@@ -24,8 +24,8 @@ public class RecipeBook {
                 System.out.println(command);
         
                 if (command.equals("c")) {
-                    // RecipeCreation.createRecipe(); // create a recipe 
-                    System.out.println("Create tab opened");
+                    RecipeCreation.createRecipe(); // create a recipe 
+                    // System.out.println("Create tab opened");
                 }
                 else if (command.equals("r")) { // retrieve recipe in two ways
                     // recipeRetrieval.retrievalInterface(obj, recipeList);
@@ -73,12 +73,19 @@ public class RecipeBook {
                                         System.out.println("Would you like to: (1) read entire recipe or (2) step through intructions"); // ask user how to read recipe
                                         String read = obj.nextLine();
                                         read = read.toLowerCase();
-                                
+
+                                        String steps[] = recipe.getSteps().split("(?<=.  )"); // parsing steps and splitting them
+
+
                                         if (read.equals("1")) {
-						System.out.println("" + recipe.getName() + recipe.getDescription() + recipe.getIngredients() + recipe.getSteps());
+                                            System.out.printf("---------------- %s ----------------\nDescription: %s\nIngredients: %s\nSteps: \n", 
+                                                                recipe.getName(), recipe.getDescription(), recipe.getIngredients());
+                                            for (String s: steps){
+                                                System.out.println("  "+s);
+                                            }
+                                            System.out.println();
                                         }
                                         else if (read.equals("2")) {
-                                            String steps[] = recipe.getSteps().split(".  "); // parsing steps and splitting them
                                 
                                             obj = new Scanner(System.in);
                                             for (int i = 0; i < steps.length; i++) {
