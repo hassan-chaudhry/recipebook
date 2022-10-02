@@ -22,8 +22,17 @@ public class RecipeRetrieval {
             }
 
             for (int i = 0; i < recipeList.size(); i++) {
+                // String current = recipeList.get(i);
+                // System.out.println(current);
                 String current = recipeList.get(i);
-                System.out.println(current);
+                String [] clean = current.split(";");
+                String recipeName = clean[0];
+                String description = clean[1];
+                String ingredientList = clean[2];
+                String stepByStep = clean[3];
+
+                Recipes temp = new Recipes(recipeName, description, ingredientList, stepByStep);
+                list.add(temp);
             }
 
             bufferedReader.close();
