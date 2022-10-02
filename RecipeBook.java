@@ -47,7 +47,7 @@ public class RecipeBook {
                         System.out.print("Please type 1 or 2 or 3: ");
 
                         int choice = 0;
-                        while(obj.hasNextInt())  //循环输入整型数字
+                        while(obj.hasNextInt()) 
                         {  
                             choice = obj.nextInt();  
                             if (choice != 1 && choice != 2 && choice != 3) {
