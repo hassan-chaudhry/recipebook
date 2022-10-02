@@ -22,10 +22,10 @@ public class RecipeReading {
 	public static void readSteps(Recipe recipe) {
 		String steps[] = recipe.getSteps.split(".  "); // parsing steps and splitting them
 
-		obj = new Scanner(System.in);
 		for (int i; i < steps.length; i++) {
 			System.out.println(steps[i]); // print each step one at a time
 
+			obj = new Scanner(System.in);
 			System.out.println("Next step? (yes/no)"); // ask user if they want to see next step
 			String next = obj.nextLine();
 			next= next.toLowerCase();
