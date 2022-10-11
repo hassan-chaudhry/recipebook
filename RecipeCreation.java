@@ -8,7 +8,7 @@ public class RecipeCreation {
     public RecipeCreation(){};
     
     public static void createRecipe(){
-        System.out.println("\nPlease enter the name of your recipe: ");
+        System.out.println("Please enter the name of your recipe: ");
         String name = scan.nextLine();
         while(duplicatedName(name)){
             System.out.println("The recipe already exists! Please enter a new name: ");
@@ -101,6 +101,7 @@ public class RecipeCreation {
 
         writer.close();
         System.out.println("New Recipe "+recipe.getName()+" successfully saved!");
+	System.out.println();
     }
 
 }
