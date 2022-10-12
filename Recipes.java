@@ -48,4 +48,14 @@ public class Recipes {
     public void displayRecipe(Recipes recipe) {
         System.out.println("Recipe name: " + recipe.getName());
     }
+
+    public void displayFullRecipe() {
+        String steps[] = this.getSteps().split("(?<=.  )"); // parsing steps and splitting them
+        
+        System.out.printf("---------------- %s ----------------\nDescription: %s\nIngredients: %s\nSteps: \n", this.getName(), this.getDescription(), this.getIngredients());
+        for (String s: steps){
+            System.out.println("  "+s);
+        }
+        System.out.println();
+    }
 }

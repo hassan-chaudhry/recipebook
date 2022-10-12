@@ -99,6 +99,7 @@ public class RecipeRetrieval {
                     String currentName = current.getName();
                     if (currentName.toLowerCase().contains(searchName.toLowerCase())) {
                         System.out.println("Found:  "+currentName);
+
                         searchResults.add(current);
                     }
                 }
