@@ -51,10 +51,17 @@ public class RecipeBook {
 					System.out.println();
 
 					if (retrieve.equals("1")) { // browse all recipes 
-						RecipeRetrieval.displayAllRecipes(recipeList);
+						recipe = RecipeRetrieval.displayAllRecipes(recipeList);
+						if (recipe == null) {
+							main_menu = false;
+						}
+						break;
 					}
 					else if (retrieve.equals("2")) { // search for a recipe 
-						recipe = RecipeRetrieval.searchForRecipe(recipeList);
+						recipe = RecipeRetrieval.searchForRecipe(recipeList, 1);
+						if (recipe == null) {
+							main_menu = false;
+						}
 						break;
 					}
 					else if (retrieve.equals("3")) { // exit back to main menu
