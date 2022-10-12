@@ -94,16 +94,17 @@ public class RecipeRetrieval {
             } else if (!searchName.matches("[a-zA-Z]+")){
                 System.out.println("Search word should only contain letters");
             } else {
+                int count =0;
                 for (int i = 0; i < list.size(); i++) {
                     Recipes current = list.get(i);
                     String currentName = current.getName();
                     if (currentName.toLowerCase().contains(searchName.toLowerCase())) {
-                        System.out.println("Found:  "+currentName);
-
+                        count ++;
+                        System.out.printf("%d. %s\n", count, currentName);
                         searchResults.add(current);
                     }
                 }
-                System.out.printf("Found %d recipes related to %s\n",searchResults.size(), searchName);
+                System.out.printf("Found %d recipes related to [%s]\n",searchResults.size(), searchName);
                 break;
             }
         }
