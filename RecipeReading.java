@@ -1,47 +1,46 @@
+import java.util.*;
+import java.io.*;
+
 public class RecipeReading {
 
 	private static Scanner obj;
 
-	public static void readRecipe(Recipes recipe) {
-		obj = new Scanner(System.in);
-		System.out.println("Would you like to: (1) read entire recipe or (2) step through intructions"); // ask user how to read recipe
-		String read = obj.nextLine();
-		read = read.toLowerCase();
-
-		if (read.equals("1")) {
-			readEntire(recipe); // read entire recipe 
-		}
-		else if (read.equals("2")) {
-			readSteps(recipe); // step through instructions
-		}
-
-		obj.close();
-	}
-
 	public static void readEntire(Recipes recipe) {
-		System.out.println(recipe.getName, recipe.getDescription, recipe.getIngredients, recipe.getSteps);
+        	String steps[] = recipe.getSteps().split("(?<=.  )"); // parsing steps and splitting them
+
+		System.out.printf("---------------- %s ----------------\nDescription: %s\nIngredients: %s\nSteps: \n", recipe.getName(), recipe.getDescription(), recipe.getIngredients());
+       		for (String s: steps){
+            		System.out.println("  "+s);
+        	}
+        	System.out.println();
 	}
 
 	public static void readSteps(Recipes recipe) {
-		String steps[] = recipe.getSteps.split(".  "); // parsing steps and splitting them
+		System.out.println("Press ENTER for the next step.");
 
-		obj = new Scanner(System.in);
-		for (int i = 0; i < steps.length; i++) {
-			System.out.println(steps[i]); // print each step one at a time
+        	obj = new Scanner(System.in);
+        	String enter = obj.nextLine();      
 
-			System.out.println("Next step? (yes/no)"); // ask user if they want to see next step
-			String next = obj.nextLine();
-			next= next.toLowerCase();
-
-			if (next.equals("yes")) {
-				continue;
-			}
-			else {
-				break;
-			}
-
+		String steps[] = recipe.getSteps().split(".  "); // parsing steps and splitting them
+ 
+        	// print each step one at a time
+	        while(enter != null) {
+        	    for (int i = 0; i < steps.length; i++) {
+                	if(enter.isEmpty()) {
+                    		System.out.print(steps[i]); 
+                	}
+            	    
+            	    	if (obj.hasNextLine()) {
+                    		enter = obj.nextLine();
+            	    	}
+               	    	
+			if (i == steps.length-1) { // break loop when all steps printed
+                		enter = null;
+                 	}
+		    }
+		
 		}
-
-		obj.close();
+		
+		System.out.println();		
 	}
 }
