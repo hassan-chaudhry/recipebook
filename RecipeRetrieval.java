@@ -88,18 +88,24 @@ public class RecipeRetrieval {
         String searchName = obj.nextLine();
         System.out.println();
 
-        for (int i = 0; i < list.size(); i++) {
-            Recipes current = list.get(i);
-            String currentName = current.getName();
-            if (currentName.toLowerCase().contains(searchName.toLowerCase())) {
-                System.out.println("Found:  "+currentName);
-                searchResults.add(current);
+        while(true){
+            if (searchName==""){
+                System.out.println("Search word can not be empty");
+            } else if (!searchName.matches("[a-zA-Z]+")){
+                System.out.println("Search word should only contain letters");
+            } else {
+                for (int i = 0; i < list.size(); i++) {
+                    Recipes current = list.get(i);
+                    String currentName = current.getName();
+                    if (currentName.toLowerCase().contains(searchName.toLowerCase())) {
+                        System.out.println("Found:  "+currentName);
+                        searchResults.add(current);
+                    }
+                }
+                System.out.printf("Found %d recipes related to %s\n",searchResults.size(), searchName);
+                break;
             }
         }
-        System.out.printf("Found %d recipes related to %s\n",searchResults.size(), searchName);
-            
-
-    
 
         return searchResults;
      
