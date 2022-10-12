@@ -78,4 +78,30 @@ public class RecipeRetrieval {
      
 
      }
+
+     public static ArrayList<Recipes> vagueSearchByName(ArrayList<Recipes> list){
+        ArrayList<Recipes> searchResults = new ArrayList<>();
+
+        obj = new Scanner(System.in);
+
+        System.out.println("Enter the word you want to search: ");
+        String searchName = obj.nextLine();
+        System.out.println();
+
+        for (int i = 0; i < list.size(); i++) {
+            Recipes current = list.get(i);
+            String currentName = current.getName();
+            if (currentName.toLowerCase().contains(searchName.toLowerCase())) {
+                System.out.println("Found:  "+currentName);
+                searchResults.add(current);
+            }
+        }
+        System.out.printf("Found %d recipes related to %s\n",searchResults.size(), searchName);
+            
+
+    
+
+        return searchResults;
+     
+     }
 }
