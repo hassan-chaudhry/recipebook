@@ -40,9 +40,10 @@ public class RecipeBook {
 				while(true) {
 					System.out.println("-------------- Recipe Retrieval --------------");
 					System.out.println("1. View all recipes");
-					System.out.println("2. Search for a recipe");
-					System.out.println("3. Exit");
-					System.out.println("");
+					System.out.println("2. Search for a recipe (with exact name)");
+					System.out.println("3. Search for a recipe (without full name)");
+					System.out.println("4. Exit");
+                    System.out.println();
 					System.out.print("Please type 1 or 2 or 3: ");
 
 					String retrieve = obj.nextLine();
@@ -64,7 +65,10 @@ public class RecipeBook {
 						}
 						break;
 					}
-					else if (retrieve.equals("3")) { // exit back to main menu
+                    else if (retrieve.equals("3")) { // search for a recipe without full name
+						RecipeRetrieval.vagueSearchByName(recipeList);
+					}
+					else if (retrieve.equals("4")) { // exit back to main menu
 						main_menu = false;
 						break;
 					}

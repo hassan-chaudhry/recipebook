@@ -6,13 +6,7 @@ public class RecipeReading {
 	private static Scanner obj;
 
 	public static void readEntire(Recipes recipe) {
-        	String steps[] = recipe.getSteps().split("(?<=.  )"); // parsing steps and splitting them
-
-		System.out.printf("---------------- %s ----------------\nDescription: %s\nIngredients: %s\nSteps: \n", recipe.getName(), recipe.getDescription(), recipe.getIngredients());
-       		for (String s: steps){
-            		System.out.println("  "+s);
-        	}
-        	System.out.println();
+        	recipe.displayFullRecipe();
 	}
 
 	public static void readSteps(Recipes recipe) {

@@ -105,5 +105,41 @@ public class RecipeRetrieval {
             // error message if recipe not found
        	    System.out.println("\nError: Recipe '" + searchName + "' was not found. Please try again.\n");
         }
-    }
+     
+
+     }
+
+     public static ArrayList<Recipes> vagueSearchByName(ArrayList<Recipes> list){
+        ArrayList<Recipes> searchResults = new ArrayList<>();
+
+        obj = new Scanner(System.in);
+
+        System.out.println("Enter the word you want to search: ");
+        String searchName = obj.nextLine();
+        System.out.println();
+
+        while(true){
+            if (searchName==""){
+                System.out.println("Search word can not be empty");
+            } else if (!searchName.matches("[a-zA-Z]+")){
+                System.out.println("Search word should only contain letters");
+            } else {
+                int count =0;
+                for (int i = 0; i < list.size(); i++) {
+                    Recipes current = list.get(i);
+                    String currentName = current.getName();
+                    if (currentName.toLowerCase().contains(searchName.toLowerCase())) {
+                        count ++;
+                        System.out.printf("%d. %s\n", count, currentName);
+                        searchResults.add(current);
+                    }
+                }
+                System.out.printf("Found %d recipes related to [%s]\n",searchResults.size(), searchName);
+                break;
+            }
+        }
+
+        return searchResults;
+     
+     }
 }
