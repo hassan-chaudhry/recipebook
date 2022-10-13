@@ -129,7 +129,8 @@ public class RecipeBook {
 					System.out.println();
 
 					if (read.equals("1")) { // user wants to edit an existing recipe
-						System.out.println("Edit section\n");
+						//System.out.println("Edit section\n");
+                        RecipeRetrieval.modifyInterface(recipeList);
 						break; 
 					}
 					else if (read.equals("2")) {  // user wants to delete an existing recipe

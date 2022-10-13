@@ -50,12 +50,14 @@ public class RecipeCreation {
             System.out.println("Recipe Saving Error!");
             e.printStackTrace();
         }
+        
+        System.out.println("New Recipe "+newRecipe.getName()+" successfully saved!");
     }
 
     public static Boolean duplicatedName(String name){
         ArrayList<Recipes> reList = RecipeRetrieval.LoadRecipes();
         for (Recipes r: reList){
-            if (r.getName().equals(name)){
+            if (r.getName().toLowerCase().equals(name.toLowerCase())){
                 return true;
             }
         }
@@ -100,8 +102,7 @@ public class RecipeCreation {
         writer.append("\n");
 
         writer.close();
-        System.out.println("New Recipe "+recipe.getName()+" successfully saved!");
-	System.out.println();
+	    System.out.println();
     }
 
 }

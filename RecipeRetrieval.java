@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.net.Inet4Address;
 
 public class RecipeRetrieval {
 
@@ -194,9 +195,95 @@ public class RecipeRetrieval {
         } else {
             target = list.get(choice-1);
         }
- 
-        System.out.println("You are editing "+target.getName());
 
+        modifyRecipe(list, target.getName());
+    }
+
+    public static void modifyRecipe(ArrayList<Recipes> list, String recipeName) {
+        System.out.println("You are editing "+recipeName);
+
+        int index = -1;
+        for (int i = 0; i<list.size(); i++){
+            if (list.get(i).getName().equals(recipeName)){
+                index = i;
+                break;
+            }
+        }
+        if (index>=list.size()||index<0){
+            System.out.println("error");
+            return;
+        } 
+
+        Scanner scan = new Scanner(System.in);
+        String temp = "";
+        ArrayList<String> tmpList = new ArrayList<>();
+
+        System.out.println("Please enter the new data for each part of the recipe.");
+        System.out.println("If you don't want to change the content of certain part, just leave it blank.");
+        System.out.println();
+
+
+        System.out.println("\nEnter a new name: ");
+        temp = scan.nextLine();
+        while(RecipeCreation.duplicatedName(temp)){
+            System.out.println("The recipe already exists! Please enter a new name: ");
+            temp = scan.nextLine();
+        }
+        if (temp != ""){
+            list.get(index).setName(temp.substring(0, 1).toUpperCase()+temp.substring(1));
+        }
+        temp = "";
+
+        System.out.println("\nEnter a new description: ");
+        temp = scan.nextLine();
+        if (temp != ""){
+            temp = RecipeCreation.formattedSentence(temp);
+            list.get(index).setDescription(temp);
+        }
+        temp = "";
+
+        System.out.println("\nEnter the new ingredients, press ENTER 2 times to end: ");
+        temp = scan.nextLine();
+        while(temp != null && !temp.equals("")){
+            tmpList.add(temp);
+            temp = scan.nextLine();
+        }
+        if (tmpList.size()>0){
+            list.get(index).setIngredients(RecipeCreation.ingredientsToString(tmpList));
+        }
+        temp = "";
+        tmpList.clear();
+
+        System.out.println("\nEnter the new steps, press ENTER 2 times to end: ");
+        temp = scan.nextLine();
+        while(temp != null && !temp.equals("")){
+            temp = RecipeCreation.formattedSentence(temp);
+            tmpList.add(temp);
+            temp = scan.nextLine();
+        }
+        if (tmpList.size()>0){
+            list.get(index).setSteps(RecipeCreation.stepsToString(tmpList));
+        }
+        temp = "";
+        tmpList.clear();
+
+        System.out.println("Your new recipe is: ");
+        list.get(index).displayFullRecipe();
+
+
+        File file =new File("recipes.txt");
+        file.delete();
+        file = new File("recipes.txt");
+
+        try {
+            for(int i = 0; i< list.size();i++){
+                RecipeCreation.writeRecipeToFile(list.get(i));
+            }
+        } catch (Exception e) {
+            System.out.println("Recipe Editing Error!");
+            e.printStackTrace();
+        }
+        
     }
 
     public static void deleteRecipe(ArrayList<Recipes> currentList, Recipes recipe) {

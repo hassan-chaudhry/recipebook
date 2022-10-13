@@ -44,7 +44,7 @@ public class Recipes {
     }
 
     public void setSteps(String steps) {
-        this.steps = ingredients;
+        this.steps = steps;
     }
 
     public void displayRecipe(Recipes recipe) {
