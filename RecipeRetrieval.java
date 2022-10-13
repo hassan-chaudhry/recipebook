@@ -148,16 +148,14 @@ public class RecipeRetrieval {
         int choice = 0;
 
         while(true){
-            for (int i = 0; i < list.size(); i++){
-                System.out.printf("   %d. %s\n", i+1, list.get(i).getName());
-            }
+            Recipes.displayRecipeList(list);
             obj = new Scanner(System.in);
     
             System.out.println("If there's a recipe you want to read in details, please enter its number. Otherwize please enter 0.\n");
              choice = obj.nextInt();
             
             if (choice < 0 || choice >list.size()){
-                System.out.println("Invalid Input");
+                System.out.println("Invalid Input. Please try again.\n");
             } else {
                 break;
             }
@@ -170,6 +168,36 @@ public class RecipeRetrieval {
             return list.get(choice-1);
         }
     } 
+
+    public static void modifyInterface(ArrayList<Recipes> list){
+        int choice = 0;
+        Recipes target = null;
+
+        // display a list and let the user too choose a recipe to edit
+        while(true){
+            Recipes.displayRecipeList(list);
+            obj = new Scanner(System.in);
+    
+            System.out.println("Choosing mode: Please choose the recipe you want to modify. Enter 0 to switch to searching mode. \n");
+             choice = obj.nextInt();
+            
+            if (choice < 0 || choice >list.size()){
+                System.out.println("Invalid Input. Please try again.\n");
+            } else {
+                break;
+            }
+        }
+
+        System.out.println();
+        if (choice==0){
+            target = RecipeRetrieval.searchForRecipe(list, 0);
+        } else {
+            target = list.get(choice-1);
+        }
+ 
+        System.out.println("You are editing "+target.getName());
+
+    }
 
     public static void deleteRecipe(ArrayList<Recipes> currentList, Recipes recipe) {
         

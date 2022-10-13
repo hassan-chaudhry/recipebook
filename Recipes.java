@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Recipes {
     private String name;
     private String description;
@@ -57,5 +59,11 @@ public class Recipes {
             System.out.println("  "+s);
         }
         System.out.println();
+    }
+
+    public static void displayRecipeList(ArrayList<Recipes> list) {
+        for (int i = 0; i < list.size(); i++){
+            System.out.printf("   %d. %s\n", i+1, list.get(i).getName());
+        }
     }
 }
