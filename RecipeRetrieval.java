@@ -126,13 +126,13 @@ public class RecipeRetrieval {
             } else if (!searchName.matches("[a-zA-Z]+")){
                 System.out.println("Search word should only contain letters");
             } else {
-                int count =0;
+                //int count =0;
                 for (int i = 0; i < list.size(); i++) {
                     Recipes current = list.get(i);
                     String currentName = current.getName();
                     if (currentName.toLowerCase().contains(searchName.toLowerCase())) {
-                        count ++;
-                        System.out.printf("%d. %s\n", count, currentName);
+                        //count ++;
+                        //System.out.printf("%d. %s\n", count, currentName);
                         searchResults.add(current);
                     }
                 }
@@ -140,10 +140,36 @@ public class RecipeRetrieval {
                 break;
             }
         }
-
         return searchResults;
-     
      }
+
+
+    public static Recipes handleSearchedList(ArrayList<Recipes> list){
+        int choice = 0;
+
+        while(true){
+            for (int i = 0; i < list.size(); i++){
+                System.out.printf("   %d. %s\n", i+1, list.get(i).getName());
+            }
+            obj = new Scanner(System.in);
+    
+            System.out.println("If there's a recipe you want to read in details, please enter its number. Otherwize please enter 0.\n");
+             choice = obj.nextInt();
+            
+            if (choice < 0 || choice >list.size()){
+                System.out.println("Invalid Input");
+            } else {
+                break;
+            }
+        }
+
+        System.out.println();
+        if (choice==0){
+            return null;
+        } else {
+            return list.get(choice-1);
+        }
+    } 
 
     public static void deleteRecipe(ArrayList<Recipes> currentList, Recipes recipe) {
         

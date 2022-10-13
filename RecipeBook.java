@@ -67,7 +67,14 @@ public class RecipeBook {
 						break;
 					}
                     else if (retrieve.equals("3")) { // search for a recipe without full name
-						RecipeRetrieval.vagueSearchByName(recipeList);
+						ArrayList<Recipes> recipesFound = RecipeRetrieval.vagueSearchByName(recipeList);
+                        if (recipesFound != null){
+                            recipe = RecipeRetrieval.handleSearchedList(recipesFound);
+                            if (recipe == null){
+                                main_menu = false;
+                            } 
+                        }
+                        break;
 					}
 					else if (retrieve.equals("4")) { // exit back to main menu
 						main_menu = false;
