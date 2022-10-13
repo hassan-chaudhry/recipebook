@@ -7,9 +7,9 @@ public class RecipeBookGUI extends JFrame {
 	// define variables
 	private static CardLayout cardLayout;
 	private static JFrame frame;
-	private static JPanel cardPanel, pMain, pCreation, pRetrieval;
-	private static JLabel lMain, lCreation, lRetrieval;
-	private static JButton bBack1, bBack2, bCreation, bRetrieval, bBrowse, bSearch;
+	private static JPanel cardPanel, pMain, pCreation, pRetrieval, pModify;
+	private static JLabel lMain, lCreation, lRetrieval, lModify;
+	private static JButton bBack1, bBack2, bBack3, bCreation, bRetrieval, bBrowse, bSearch, bModify;
 	
 	public static void main(String args[]) {
 		RecipeBookGUI rbg = new RecipeBookGUI();
@@ -38,10 +38,12 @@ public class RecipeBookGUI extends JFrame {
 
 		bCreation = new JButton("Create Recipe"); // create new button
 		bRetrieval = new JButton("Retrieve Recipe"); // create new button
+		bModify = new JButton("Modify Recipe");
 
 		pMain.add(lMain); // add label to panel
 		pMain.add(bCreation); // add button to panel
 		pMain.add(bRetrieval); // add button to panel
+		pMain.add(bModify); // add button to panel
 
 		// "Recipe Creation" page
 		pCreation = new JPanel();
@@ -49,6 +51,7 @@ public class RecipeBookGUI extends JFrame {
 
 		lCreation = new JLabel("Recipe Creation");
 		lCreation.setForeground(Color.WHITE);
+
 		bBack1 = new JButton("Go Back");
 
 		pCreation.add(lCreation);
@@ -70,10 +73,23 @@ public class RecipeBookGUI extends JFrame {
 		pRetrieval.add(bSearch);
 		pRetrieval.add(bBack2);
 
+		// "Recipe Modification" page
+		pModify = new JPanel();
+		pModify.setBackground(new java.awt.Color(203, 195, 227));
+
+		lModify = new JLabel("Recipe Modification");
+		lModify.setForeground(Color.WHITE);
+
+		bBack3 = new JButton("Go Back");
+
+		pModify.add(lModify);
+		pModify.add(bBack3);
+
 		// add every other panel to main "cardPanel" panel
 		cardPanel.add(pMain, "Recipe Book");
 		cardPanel.add(pCreation, "Recipe Creation");
 		cardPanel.add(pRetrieval, "Recipe Retrieval");
+		cardPanel.add(pModify, "Recipe Modification");
 
 		// display "Recipe Book" page
 		getContentPane().add(cardPanel, BorderLayout.CENTER);
@@ -91,6 +107,12 @@ public class RecipeBookGUI extends JFrame {
 			}		  
 		}); 
 
+		bBack3.addActionListener(new ActionListener() {  
+			public void actionPerformed(ActionEvent ae) {  
+				cardLayout.show(cardPanel, "" + "Recipe Book");
+			}		  
+		});
+
 		bCreation.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent ae) {  
 				cardLayout.show(cardPanel, "" + "Recipe Creation");
@@ -103,5 +125,12 @@ public class RecipeBookGUI extends JFrame {
 			}		  
 		});  
 
+		bModify.addActionListener(new ActionListener() {  
+			public void actionPerformed(ActionEvent ae) {  
+				cardLayout.show(cardPanel, "" + "Recipe Modification");
+			}		  
+		}); 
+
 	}
 }
+
