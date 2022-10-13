@@ -79,8 +79,12 @@ public class RecipeRetrieval {
                 System.out.print("Select recipe (type 'exit' to leave): ");
                 searchName = obj.nextLine();
                 searchName = searchName.toLowerCase();
-            } else {
+            } else if (choice == 1){
                 System.out.print("Name of recipe (type 'exit' to leave): ");
+                searchName = obj.nextLine();
+                searchName = searchName.toLowerCase();
+            } else {
+                System.out.print("Recipe name to delete (type 'exit' to leave): ");
                 searchName = obj.nextLine();
                 searchName = searchName.toLowerCase();
             }
@@ -105,8 +109,6 @@ public class RecipeRetrieval {
             // error message if recipe not found
        	    System.out.println("\nError: Recipe '" + searchName + "' was not found. Please try again.\n");
         }
-     
-
      }
 
      public static ArrayList<Recipes> vagueSearchByName(ArrayList<Recipes> list){
@@ -142,4 +144,49 @@ public class RecipeRetrieval {
         return searchResults;
      
      }
+
+    public static void deleteRecipe(ArrayList<Recipes> currentList, Recipes recipe) {
+        
+        // delete the recipe from the list
+        currentList.remove(recipe);
+        System.out.println("Successfully deleted '" + recipe.getName() + "'!");
+        System.out.println();
+
+        // also delete it from the text file
+        File inputFile = new File("recipes.txt");
+        File tempFile = new File("myTempFile.txt");
+
+        String line = null;
+
+        try {
+            FileReader fileReader = new FileReader(inputFile);
+            FileWriter fileWriter = new FileWriter(tempFile);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            // go through each line the file reader and it matches with what we need to delete,
+            // then don't write it to the new file 
+            while ((line = bufferedReader.readLine()) != null) {
+                String [] clean = line.split(";");
+                String recipeName = clean[0];
+                if (recipeName.equals(recipe.getName())) continue;
+                bufferedWriter.write(line + System.getProperty("line.separator"));
+            }
+            bufferedWriter.close();
+            bufferedReader.close();
+            // delete the old outdated file
+            if (!inputFile.delete()) {
+                System.out.println("Could not delete file");
+                return;
+            }
+            // rename the temp file
+            if (!tempFile.renameTo(inputFile))
+                System.out.println("Could not rename file");
+                
+        } catch (FileNotFoundException ex) {
+            System.out.println("Unable to open file '" + "recipes.txt" + "'");
+        } catch (IOException ex) {
+            System.out.println("Error reading file '" + "recipes.txt" + "'");
+        }
+    }
 }
