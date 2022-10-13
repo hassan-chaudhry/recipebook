@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.net.Inet4Address;
 
 public class RecipeRetrieval {
 
@@ -126,13 +127,13 @@ public class RecipeRetrieval {
             } else if (!searchName.matches("[a-zA-Z]+")){
                 System.out.println("Search word should only contain letters");
             } else {
-                int count =0;
+                //int count =0;
                 for (int i = 0; i < list.size(); i++) {
                     Recipes current = list.get(i);
                     String currentName = current.getName();
                     if (currentName.toLowerCase().contains(searchName.toLowerCase())) {
-                        count ++;
-                        System.out.printf("%d. %s\n", count, currentName);
+                        //count ++;
+                        //System.out.printf("%d. %s\n", count, currentName);
                         searchResults.add(current);
                     }
                 }
@@ -140,10 +141,150 @@ public class RecipeRetrieval {
                 break;
             }
         }
-
         return searchResults;
-     
      }
+
+
+    public static Recipes handleSearchedList(ArrayList<Recipes> list){
+        int choice = 0;
+
+        while(true){
+            Recipes.displayRecipeList(list);
+            obj = new Scanner(System.in);
+    
+            System.out.println("If there's a recipe you want to read in details, please enter its number. Otherwize please enter 0.\n");
+             choice = obj.nextInt();
+            
+            if (choice < 0 || choice >list.size()){
+                System.out.println("Invalid Input. Please try again.\n");
+            } else {
+                break;
+            }
+        }
+
+        System.out.println();
+        if (choice==0){
+            return null;
+        } else {
+            return list.get(choice-1);
+        }
+    } 
+
+    public static void modifyInterface(ArrayList<Recipes> list){
+        int choice = 0;
+        Recipes target = null;
+
+        // display a list and let the user too choose a recipe to edit
+        while(true){
+            Recipes.displayRecipeList(list);
+            obj = new Scanner(System.in);
+    
+            System.out.println("Choosing mode: Please choose the recipe you want to modify. Enter 0 to switch to searching mode. \n");
+             choice = obj.nextInt();
+            
+            if (choice < 0 || choice >list.size()){
+                System.out.println("Invalid Input. Please try again.\n");
+            } else {
+                break;
+            }
+        }
+
+        System.out.println();
+        if (choice==0){
+            target = RecipeRetrieval.searchForRecipe(list, 0);
+        } else {
+            target = list.get(choice-1);
+        }
+
+        modifyRecipe(list, target.getName());
+    }
+
+    public static void modifyRecipe(ArrayList<Recipes> list, String recipeName) {
+        System.out.println("You are editing "+recipeName);
+
+        int index = -1;
+        for (int i = 0; i<list.size(); i++){
+            if (list.get(i).getName().equals(recipeName)){
+                index = i;
+                break;
+            }
+        }
+        if (index>=list.size()||index<0){
+            System.out.println("error");
+            return;
+        } 
+
+        Scanner scan = new Scanner(System.in);
+        String temp = "";
+        ArrayList<String> tmpList = new ArrayList<>();
+
+        System.out.println("Please enter the new data for each part of the recipe.");
+        System.out.println("If you don't want to change the content of certain part, just leave it blank.");
+        System.out.println();
+
+
+        System.out.println("\nEnter a new name: ");
+        temp = scan.nextLine();
+        while(RecipeCreation.duplicatedName(temp)){
+            System.out.println("The recipe already exists! Please enter a new name: ");
+            temp = scan.nextLine();
+        }
+        if (temp != ""){
+            list.get(index).setName(temp.substring(0, 1).toUpperCase()+temp.substring(1));
+        }
+        temp = "";
+
+        System.out.println("\nEnter a new description: ");
+        temp = scan.nextLine();
+        if (temp != ""){
+            temp = RecipeCreation.formattedSentence(temp);
+            list.get(index).setDescription(temp);
+        }
+        temp = "";
+
+        System.out.println("\nEnter the new ingredients, press ENTER 2 times to end: ");
+        temp = scan.nextLine();
+        while(temp != null && !temp.equals("")){
+            tmpList.add(temp);
+            temp = scan.nextLine();
+        }
+        if (tmpList.size()>0){
+            list.get(index).setIngredients(RecipeCreation.ingredientsToString(tmpList));
+        }
+        temp = "";
+        tmpList.clear();
+
+        System.out.println("\nEnter the new steps, press ENTER 2 times to end: ");
+        temp = scan.nextLine();
+        while(temp != null && !temp.equals("")){
+            temp = RecipeCreation.formattedSentence(temp);
+            tmpList.add(temp);
+            temp = scan.nextLine();
+        }
+        if (tmpList.size()>0){
+            list.get(index).setSteps(RecipeCreation.stepsToString(tmpList));
+        }
+        temp = "";
+        tmpList.clear();
+
+        System.out.println("Your new recipe is: ");
+        list.get(index).displayFullRecipe();
+
+
+        File file =new File("recipes.txt");
+        file.delete();
+        file = new File("recipes.txt");
+
+        try {
+            for(int i = 0; i< list.size();i++){
+                RecipeCreation.writeRecipeToFile(list.get(i));
+            }
+        } catch (Exception e) {
+            System.out.println("Recipe Editing Error!");
+            e.printStackTrace();
+        }
+        
+    }
 
     public static void deleteRecipe(ArrayList<Recipes> currentList, Recipes recipe) {
         
