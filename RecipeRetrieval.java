@@ -7,6 +7,8 @@ public class RecipeRetrieval {
 
     public RecipeRetrieval() {}
 
+    // this is a method to get all the recipes stored in the recipes.txt file and store them
+    // in an array of Recipes object
     public static ArrayList<Recipes> LoadRecipes() {
 
         ArrayList<String> recipeList = new ArrayList<String> ();
@@ -47,36 +49,66 @@ public class RecipeRetrieval {
         return list;
     }
 
-    public static void displayAllRecipes(ArrayList<Recipes> list) {
+    // method to display all recipes that are stored
+    public static Recipes displayAllRecipes(ArrayList<Recipes> list) {
+
+        Recipes returnRecipe;
+
         for (int i = 0; i < list.size(); i++) {
             Recipes temp = list.get(i);
             temp.displayRecipe(temp);
         }
-	System.out.println();
-    }
+	    System.out.println();
 
-    public static Recipes searchForRecipe(ArrayList<Recipes> list) {
+        // after looking through all the recipes, we want the user to be able to search for a recipe if they want
+        returnRecipe = searchForRecipe(list, 0);
+
+        return returnRecipe;
+    }
+    
+    // method to search for a recipe 
+    public static Recipes searchForRecipe(ArrayList<Recipes> list, int choice) {
         obj = new Scanner(System.in);
         Recipes recipe = new Recipes();
-	while(true) {
+	    while(true) {
 
-	        System.out.println("Name of recipe: ");
-	        String searchName = obj.nextLine();
-	
+            String searchName;
 
-	        for (int i = 0; i < list.size(); i++) {
-        	    Recipes temp = list.get(i);
-            	    if (temp.getName().equals(searchName)) {
-                	System.out.println("\nRecipe was found!\n");
-               		Recipes current = list.get(i);
-                	return current;
-            	    }
-		}
-  
-       	System.out.println("\nError: Recipe was not found. Please try again.\n");
+            // ask user for recipe
+            if (choice == 0) {
+                System.out.print("Select recipe (type 'exit' to leave): ");
+                searchName = obj.nextLine();
+                searchName = searchName.toLowerCase();
+            } else if (choice == 1){
+                System.out.print("Name of recipe (type 'exit' to leave): ");
+                searchName = obj.nextLine();
+                searchName = searchName.toLowerCase();
+            } else {
+                System.out.print("Recipe name to delete (type 'exit' to leave): ");
+                searchName = obj.nextLine();
+                searchName = searchName.toLowerCase();
+            }
+
+            // check if user wants to exit loop
+            if (searchName.equals("exit")) {
+                System.out.println();
+                return null;
+            } else {  // user is trying to search for a recipe
+                // see if recipe exists, if so return that Recipes object
+                for (int i = 0; i < list.size(); i++) {
+                    Recipes temp = list.get(i);
+                    String loweredTemp = temp.getName().toLowerCase();
+                    if (loweredTemp.equals(searchName)) {
+                        System.out.println("\nRecipe was found!\n");
+                        Recipes current = list.get(i);
+                        return current;
+                    }
+                }
+            }
+            
+            // error message if recipe not found
+       	    System.out.println("\nError: Recipe '" + searchName + "' was not found. Please try again.\n");
         }
-     
-
      }
 
      public static ArrayList<Recipes> vagueSearchByName(ArrayList<Recipes> list){
@@ -112,4 +144,49 @@ public class RecipeRetrieval {
         return searchResults;
      
      }
+
+    public static void deleteRecipe(ArrayList<Recipes> currentList, Recipes recipe) {
+        
+        // delete the recipe from the list
+        currentList.remove(recipe);
+        System.out.println("Successfully deleted '" + recipe.getName() + "'!");
+        System.out.println();
+
+        // also delete it from the text file
+        File inputFile = new File("recipes.txt");
+        File tempFile = new File("myTempFile.txt");
+
+        String line = null;
+
+        try {
+            FileReader fileReader = new FileReader(inputFile);
+            FileWriter fileWriter = new FileWriter(tempFile);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            // go through each line the file reader and it matches with what we need to delete,
+            // then don't write it to the new file 
+            while ((line = bufferedReader.readLine()) != null) {
+                String [] clean = line.split(";");
+                String recipeName = clean[0];
+                if (recipeName.equals(recipe.getName())) continue;
+                bufferedWriter.write(line + System.getProperty("line.separator"));
+            }
+            bufferedWriter.close();
+            bufferedReader.close();
+            // delete the old outdated file
+            if (!inputFile.delete()) {
+                System.out.println("Could not delete file");
+                return;
+            }
+            // rename the temp file
+            if (!tempFile.renameTo(inputFile))
+                System.out.println("Could not rename file");
+                
+        } catch (FileNotFoundException ex) {
+            System.out.println("Unable to open file '" + "recipes.txt" + "'");
+        } catch (IOException ex) {
+            System.out.println("Error reading file '" + "recipes.txt" + "'");
+        }
+    }
 }
