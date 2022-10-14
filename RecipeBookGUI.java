@@ -160,7 +160,41 @@ public class RecipeBookGUI extends JFrame {
 			*/
 
 			// create panel
-			pBrowse = new JPanel();
+            class BrowsePanel extends JPanel implements ActionListener{
+                BrowsePanel(){
+                    super();
+                    this.createAndShowGUI();
+                }
+
+                private void createAndShowGUI() {
+                    lBrowse = new JLabel("Browse Recipes");
+                    lBrowse.setForeground(Color.WHITE);
+                    String allRecipes = RecipeRetrieval.allRecipeNames(recipeList); // returns string of recipe list where recipes are seperated by \n
+                    recipes = new JTextArea(allRecipes, 15, 45);
+                    bBack4 = new JButton("Go Back");
+                    this.add(lBrowse);
+                    this.add(recipes);
+                    this.add(bBack4);
+                    JButton refresh = new JButton("refresh");
+                    refresh.addActionListener(this);
+                    this.add(refresh);
+                    bBack4.addActionListener(new ActionListener() {  
+                        public void actionPerformed(ActionEvent ae) {  
+                            cardLayout.show(cardPanel, "" + "Recipe Retrieval"); // switch to "Recipe Retrieval" page
+                        }		  
+                    }); 
+                }
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    this.removeAll();
+                    this.createAndShowGUI();    
+                    this.updateUI();
+                }
+            }
+
+			pBrowse = new BrowsePanel();
+            /* 
 			pBrowse.setBackground(new java.awt.Color(102, 204, 255));
 
 			// create labels
@@ -168,7 +202,7 @@ public class RecipeBookGUI extends JFrame {
 			lBrowse.setForeground(Color.WHITE);
 
 			// get all recipes
-			String allRecipes = RecipeRetrieval.allRecipeNames(); // returns string of recipe list where recipes are seperated by \n
+			String allRecipes = RecipeRetrieval.allRecipeNames(recipeList); // returns string of recipe list where recipes are seperated by \n
 			recipes = new JTextArea(allRecipes, 15, 45);
 
 			// create buttons
@@ -178,7 +212,7 @@ public class RecipeBookGUI extends JFrame {
 			pBrowse.add(lBrowse);
 			pBrowse.add(recipes);
 			pBrowse.add(bBack4);
-
+            */
 			/*
 				"Recipe Search" page
 			*/
@@ -331,7 +365,7 @@ public class RecipeBookGUI extends JFrame {
 				String recipeIngredients = recipeIngredientsTA.getText().trim();
 				String recipeSteps = recipeStepsTA.getText().trim();
 
-				RecipeCreation.createRecipeGUI(recipeName,recipeDescription,recipeIngredients,recipeSteps); // creates recipe based on user input
+				RecipeCreation.createRecipeGUI(recipeName,recipeDescription,recipeIngredients,recipeSteps, recipeList); // creates recipe based on user input
 
 				// clear text fields
 				recipeNameTF.setText("");
@@ -350,9 +384,9 @@ public class RecipeBookGUI extends JFrame {
 		});  
 
 		bBrowse.addActionListener(new ActionListener() {  
-			public void actionPerformed(ActionEvent ae) {  
-				cardLayout.show(cardPanel, "" + "Browse Recipes"); // switch to "Browse Recipes" page
-			}		  
+            public void actionPerformed(ActionEvent ae) {    
+               cardLayout.show(cardPanel, "" + "Browse Recipes"); // switch to "Browse Recipes" page
+            }
 		}); 
 
 		bSearch.addActionListener(new ActionListener() {  

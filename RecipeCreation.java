@@ -54,7 +54,7 @@ public class RecipeCreation {
         System.out.println("New Recipe "+newRecipe.getName()+" successfully saved!");
     }
 
-    public static void createRecipeGUI(String name, String description, String ingreds, String stps){
+    public static void createRecipeGUI(String name, String description, String ingreds, String stps, ArrayList<Recipes> list){
         String[] ingList = ingreds.split("\n");
         String[] stepList = stps.split("\n");
 
@@ -69,7 +69,7 @@ public class RecipeCreation {
             System.out.println("Recipe Saving Error!");
             e.printStackTrace();
         }
-        
+        list.add(newRecipe);
         System.out.println("New Recipe "+name+" successfully saved!");
     }
 

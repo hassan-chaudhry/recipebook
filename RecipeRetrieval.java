@@ -341,8 +341,7 @@ public class RecipeRetrieval {
         }
     }
 
-    public static String allRecipeNames(){
-        ArrayList<Recipes> list = LoadRecipes();
+    public static String allRecipeNames(ArrayList<Recipes> list){
         String names = "";
         for (int i = 0; i<list.size(); i++){
             names+= list.get(i).getName();
