@@ -330,4 +330,16 @@ public class RecipeRetrieval {
             System.out.println("Error reading file '" + "recipes.txt" + "'");
         }
     }
+
+    public static String allRecipeNames(){
+        ArrayList<Recipes> list = LoadRecipes();
+        String names = "";
+        for (int i = 0; i<list.size(); i++){
+            names+= list.get(i).getName();
+            if (i != list.size()-1){
+                names+="\n";
+            }
+        }
+        return names;
+    }
 }

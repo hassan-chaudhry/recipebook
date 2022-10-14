@@ -117,7 +117,7 @@ public class RecipeBookGUI extends JFrame {
 			lBrowse = new JLabel("Browse Recipes");
 			lBrowse.setForeground(Color.WHITE);
 
-			String recipe = ("Peanut Butter and Jelly\nMac and Cheese\nLemonade"); // replace line with method that returns string of recipe list where recipes are seperated by \n
+			String recipe = RecipeRetrieval.allRecipeNames(); // replace line with method that returns string of recipe list where recipes are seperated by \n
 			recipes = new JTextArea(recipe, 15, 45);
 
 			bBack4 = new JButton("Go Back");
