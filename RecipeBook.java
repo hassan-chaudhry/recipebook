@@ -67,7 +67,14 @@ public class RecipeBook {
 						break;
 					}
                     else if (retrieve.equals("3")) { // search for a recipe without full name
-						RecipeRetrieval.vagueSearchByName(recipeList);
+						ArrayList<Recipes> recipesFound = RecipeRetrieval.vagueSearchByName(recipeList);
+                        if (recipesFound != null){
+                            recipe = RecipeRetrieval.handleSearchedList(recipesFound);
+                            if (recipe == null){
+                                main_menu = false;
+                            } 
+                        }
+                        break;
 					}
 					else if (retrieve.equals("4")) { // exit back to main menu
 						main_menu = false;
@@ -122,7 +129,8 @@ public class RecipeBook {
 					System.out.println();
 
 					if (read.equals("1")) { // user wants to edit an existing recipe
-						System.out.println("Edit section\n");
+						//System.out.println("Edit section\n");
+                        RecipeRetrieval.modifyInterface(recipeList);
 						break; 
 					}
 					else if (read.equals("2")) {  // user wants to delete an existing recipe
