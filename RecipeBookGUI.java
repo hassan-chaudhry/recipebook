@@ -15,20 +15,22 @@ public class RecipeBookGUI extends JFrame {
 	private static JButton bBack1, bBack2, bBack3, bBack4, bBack5, bBack6, bCreation, bRecipeToCreate, bRetrieval, bBrowse, bSearch, bRecipeToSearch, bReadEntire, bReadSteps, bNext, bModify, bExit;
 	private static JTextField recipeNameTF, recipeDescriptionTF, recipeToSearchTF;
 	private static JTextArea recipes, recipeIngredientsTA, recipeStepsTA, readRecipeTA;
-	int stepCounter;
+	boolean bNextExist = false; // to keep track of "Next Step" button visibility on "Recipe Reading" page
+	int stepCounter; // to keep track of step count on "Recipe Reading" page
 
 	// retrieve recipes already in recipes.txt file
-	private static Recipes recipe = new Recipes();
-	private static ArrayList<Recipes> recipeList = new ArrayList<Recipes> ();	
-	private static RecipeRetrieval data = new RecipeRetrieval();
-	private static ArrayList<Recipes> hold = data.LoadRecipes();
+	private Recipes recipe = new Recipes();
+	private ArrayList<Recipes> recipeList = new ArrayList<Recipes> ();	
+	private RecipeRetrieval data = new RecipeRetrieval();
+	private ArrayList<Recipes> hold = data.LoadRecipes();
 
 	public static void main(String args[]) {
 
-	RecipeBookGUI rbg = new RecipeBookGUI();
-	rbg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-	rbg.setResizable(false);
-	rbg.setVisible(true);
+		// run program;
+		RecipeBookGUI rbg = new RecipeBookGUI();
+		rbg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+		rbg.setResizable(false);
+		rbg.setVisible(true);
 
 	}
 
@@ -311,10 +313,12 @@ public class RecipeBookGUI extends JFrame {
 		bBack6.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent ae) {  
 				readRecipeTA.setText("");
+				if (bNextExist) {
+					bNext.setVisible(false);
+				}
 				cardLayout.show(cardPanel, "" + "Recipe Retrieval");
 			}		  
 		});
-
 
 		bCreation.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent ae) {  
@@ -324,7 +328,6 @@ public class RecipeBookGUI extends JFrame {
 
 		bRecipeToCreate.addActionListener(new ActionListener() { // to create a recipe
 			public void actionPerformed(ActionEvent ae) {  
-
 				// get user input
 				String recipeName = recipeNameTF.getText().trim();
 				String recipeDescription = recipeDescriptionTF.getText().trim();
@@ -339,7 +342,13 @@ public class RecipeBookGUI extends JFrame {
 				recipeIngredientsTA.setText("");
 				recipeStepsTA.setText("");
 
-				cardLayout.show(cardPanel, "" + "Recipe Book");
+				// get program to read updated recipes.txt file by closing current instance of program and making a new one
+				dispose();
+				RecipeBookGUI rbg = new RecipeBookGUI();
+				rbg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+				rbg.setResizable(false);
+				rbg.setVisible(true);
+
 			}		  
 		}); 
 
@@ -363,13 +372,15 @@ public class RecipeBookGUI extends JFrame {
 
 		bRecipeToSearch.addActionListener(new ActionListener() { // to retrieve a recipe
 			public void actionPerformed(ActionEvent ae) {  
+				// get recipe from user
 				String recipeToSearch = recipeToSearchTF.getText();
-
-				System.out.println(recipeToSearch); // replace line with method that has inputs recipe name outputs recipe name
+				boolean recipeFound = true; // replace line with method that returns true if recipe found, else false
 				
 				// if recipe found go to "Recipe Reading Page," else show error
-				if(true) {
-				    cardLayout.show(cardPanel, "" + "Recipe Reading");
+				if(recipeFound) {
+					Recipes readRecipe;
+					readRecipe = recipeList.get(0); // replace line with method that has inputs recipe name outputs recipe 
+				    cardLayout.show(cardPanel, "" + "Recipe Reading"); // switch to "Recipe Reading" page
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Recipe '" + recipeToSearch + "' not found. Please try again.", "Error", JOptionPane.WARNING_MESSAGE); // error message
@@ -382,7 +393,15 @@ public class RecipeBookGUI extends JFrame {
 
 		bReadEntire.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent ae) {  
-				Recipes readRecipe = recipeList.get(0);
+				if (bNextExist) { // if "Next Step" button exists
+					bNext.setVisible(false); // delete it
+				}
+
+				// get recipe
+				Recipes readRecipe;
+				readRecipe = recipeList.get(0); // replace line with method that has inputs recipe name outputs recipe 
+				
+				// wrap text field	
 				readRecipeTA.setLineWrap(true);
 				readRecipeTA.setText("Recipe Name: " + readRecipe.getName() + "\nRecipe Description: " + readRecipe.getDescription() + "\nRecipe Ingredients: " + readRecipe.getIngredients() + "\nRecipe Steps: " + readRecipe.getSteps());
 			}		  
@@ -390,14 +409,18 @@ public class RecipeBookGUI extends JFrame {
 
 		bReadSteps.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent ae) {  
-				// get recipe and wrap text field
-				Recipes readRecipe = recipeList.get(0);
+				// get recipe
+				Recipes readRecipe;
+				readRecipe = recipeList.get(0); // replace line with method that has inputs recipe name outputs recipe 
+				
+				// wrap text field	
 				readRecipeTA.setLineWrap(true);
 				readRecipeTA.setText("Recipe Steps: \n");
 
 				// button to get next step
 				bNext = new JButton("Next Step");
 				pRead.add(bNext);
+				bNextExist = true;
 				bNext.setVisible(true);
 
 				// set up iteration counter
