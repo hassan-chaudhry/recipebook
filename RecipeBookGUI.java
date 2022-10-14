@@ -117,7 +117,7 @@ public class RecipeBookGUI extends JFrame {
 			lBrowse = new JLabel("Browse Recipes");
 			lBrowse.setForeground(Color.WHITE);
 
-			String recipe = RecipeRetrieval.allRecipeNames(); // replace line with method that returns string of recipe list where recipes are seperated by \n
+			String recipe = RecipeRetrieval.allRecipeNames(); //returns string of recipe list where recipes are seperated by \n
 			recipes = new JTextArea(recipe, 15, 45);
 
 			bBack4 = new JButton("Go Back");
@@ -232,14 +232,13 @@ public class RecipeBookGUI extends JFrame {
 
 		bRecipeToCreate.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent ae) {  
-				String recipeName = recipeNameTF.getText();
-				String recipeDescription = recipeDescriptionTF.getText();
-				String recipeIngredients = recipeIngredientsTA.getText();
-				String recipeSteps = recipeStepsTA.getText();
+				String recipeName = recipeNameTF.getText().trim();
+				String recipeDescription = recipeDescriptionTF.getText().trim();
+				String recipeIngredients = recipeIngredientsTA.getText().trim();
+				String recipeSteps = recipeStepsTA.getText().trim();
 
-				System.out.println(recipeIngredients);
-				System.out.println(recipeSteps); // replace line with method that takes strings of recipe name, description, ingredients, and steps as input and creates a recipe
-				
+				RecipeCreation.createRecipeGUI(recipeName,recipeDescription,recipeIngredients,recipeSteps);
+
 				// clear text fields
 				recipeNameTF.setText("");
 				recipeDescriptionTF.setText("");
