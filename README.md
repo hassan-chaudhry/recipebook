@@ -75,7 +75,7 @@ When the program starts running, it'll first ask if the user wants to create a n
 
 <img width="304" alt="recipeend" src="https://user-images.githubusercontent.com/82198103/195943843-274c1458-e7a4-4cfa-82e1-56fffe18b7fc.png">
 
-### 1. RecipeBookGUI.java
+### 2. RecipeBookGUI.java
 This is a GUI version of the program which was made using Java Swing. It has mostly the same features as the command-line version except the modify features have not been added. The user can compile "RecipeBookGUI.java" and run this file to access this program.
 
 #### Recipe Book Page
