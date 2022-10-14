@@ -1,6 +1,7 @@
 # Hell's Kitchen Recipe Book
 
 In Hell's Kitchen Recipe Book, users are allowed to create new recipes, retrieve pre-existing recipes, and modify pre-existing recipes. 
+
 There are TWO main files which the user can compile: RecipeBook.java and RecipeBookGUI.java. The former is a command-line version of the program, and the latter incorporates a GUI via Java Swing.
 
 ## Table of Contents
