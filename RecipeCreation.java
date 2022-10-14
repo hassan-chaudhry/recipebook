@@ -69,8 +69,6 @@ public class RecipeCreation {
             System.out.println("Recipe Saving Error!");
             e.printStackTrace();
         }
-        
-        System.out.println("New Recipe "+name+" successfully saved!");
     }
 
     public static Boolean duplicatedName(String name){
