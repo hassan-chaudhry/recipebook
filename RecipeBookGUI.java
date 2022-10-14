@@ -408,7 +408,7 @@ public class RecipeBookGUI extends JFrame {
 				
 				// wrap text field	
 				readRecipeTA.setLineWrap(true);
-				readRecipeTA.setText("Recipe Steps: \n");
+				readRecipeTA.setText("Recipe Steps for " + readRecipe.getName() + ": \n");
 
 				// button to get next step
 				bNext = new JButton("Next Step");
