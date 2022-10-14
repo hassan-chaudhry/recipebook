@@ -112,6 +112,16 @@ public class RecipeRetrieval {
         }
      }
 
+    public static boolean existRecipeGUI(String name) {
+        ArrayList<Recipes> list = LoadRecipes();
+        for (int i = 0; i<list.size(); i++){
+            if (list.get(i).getName().toLowerCase().equals(name.toLowerCase())){
+                return true;
+            }
+        }
+        return false;
+    }
+
      public static Recipes searchByNameGUI(String name){
         ArrayList<Recipes> list = LoadRecipes();
         for (int i = 0; i<list.size(); i++){

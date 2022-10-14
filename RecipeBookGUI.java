@@ -15,6 +15,7 @@ public class RecipeBookGUI extends JFrame {
 	private static JButton bBack1, bBack2, bBack3, bBack4, bBack5, bBack6, bCreation, bRecipeToCreate, bRetrieval, bBrowse, bSearch, bRecipeToSearch, bReadEntire, bReadSteps, bNext, bModify, bExit;
 	private static JTextField recipeNameTF, recipeDescriptionTF, recipeToSearchTF;
 	private static JTextArea recipes, recipeIngredientsTA, recipeStepsTA, readRecipeTA;
+	public Recipes readRecipe; // to keep track os recipe given by usser
 	boolean bNextExist = false; // to keep track of "Next Step" button visibility on "Recipe Reading" page
 	int stepCounter; // to keep track of step count on "Recipe Reading" page
 
@@ -54,39 +55,39 @@ public class RecipeBookGUI extends JFrame {
 		// create panel
 		pMain = new JPanel(); // create new panel
 		pMain.setBackground(Color.decode("#ECB390"));
-        pMain.setLayout(null);
+		pMain.setLayout(null);
 
-        // create & format labels
+		// create & format labels
 		lMain = new JLabel("Recipe Book",JLabel.CENTER); 
-        lMain.setOpaque(true);
-        lMain.setFont(new Font("Serif", Font.BOLD, 40));
-        lMain.setBackground(Color.decode("#FCF8E8"));
+		lMain.setOpaque(true);
+		lMain.setFont(new Font("Serif", Font.BOLD, 40));
+		lMain.setBackground(Color.decode("#FCF8E8"));
 		lMain.setForeground(Color.decode("#DF7861"));
-        lMain.setBounds(0, 0, 600, 100);
+		lMain.setBounds(0, 0, 600, 100);
 
-        // create & format buttons
+		// create & format buttons
 		bCreation = new JButton("Create Recipe"); 
 		bRetrieval = new JButton("Retrieve Recipe"); 
 		bModify = new JButton("Modify Recipe");
 		bExit = new JButton("Exit");
 
-        bCreation.setBounds(60,150,200, 50);
-        bCreation.setBorderPainted(false);
-        bCreation.setBackground(Color.decode("#EDDBC0"));
+		bCreation.setBounds(60,150,200, 50);
+		bCreation.setBorderPainted(false);
+		bCreation.setBackground(Color.decode("#EDDBC0"));
 
-        bRetrieval.setBounds(320,150,200, 50);
-        bRetrieval.setBorderPainted(false);
-        bRetrieval.setBackground(Color.decode("#EDDBC0"));
+		bRetrieval.setBounds(320,150,200, 50);
+		bRetrieval.setBorderPainted(false);
+ 		bRetrieval.setBackground(Color.decode("#EDDBC0"));
 
-        bModify.setBounds(60,230,200, 50);
-        bModify.setBorderPainted(false);
-        bModify.setBackground(Color.decode("#EDDBC0"));
+		bModify.setBounds(60,230,200, 50);
+		bModify.setBorderPainted(false);
+		bModify.setBackground(Color.decode("#EDDBC0"));
 
         bExit.setBounds(320,230,200, 50);
         bExit.setForeground(Color.decode("#EDDBC0"));
         bExit.setBackground(Color.decode("#7D6E83"));
 
-        // add all components to panel
+		// add all components to panel
 		pMain.add(lMain); 
 		pMain.add(bCreation); 
 		pMain.add(bRetrieval); 
@@ -374,12 +375,11 @@ public class RecipeBookGUI extends JFrame {
 			public void actionPerformed(ActionEvent ae) {  
 				// get recipe from user
 				String recipeToSearch = recipeToSearchTF.getText();
-				boolean recipeFound = true; // replace line with method that returns true if recipe found, else false
+				boolean recipeFound = RecipeRetrieval.existRecipeGUI(recipeToSearch); // replace line with method that returns true if recipe found, else false
 				
 				// if recipe found go to "Recipe Reading Page," else show error
 				if(recipeFound) {
-					Recipes readRecipe;
-					readRecipe = recipeList.get(0); // replace line with method that has inputs recipe name outputs recipe 
+					readRecipe = RecipeRetrieval.searchByNameGUI(recipeToSearch); // replace line with method that has inputs recipe name outputs recipe 
 				    cardLayout.show(cardPanel, "" + "Recipe Reading"); // switch to "Recipe Reading" page
 				}
 				else {
@@ -396,10 +396,6 @@ public class RecipeBookGUI extends JFrame {
 				if (bNextExist) { // if "Next Step" button exists
 					bNext.setVisible(false); // delete it
 				}
-
-				// get recipe
-				Recipes readRecipe;
-				readRecipe = recipeList.get(0); // replace line with method that has inputs recipe name outputs recipe 
 				
 				// wrap text field	
 				readRecipeTA.setLineWrap(true);
@@ -409,9 +405,6 @@ public class RecipeBookGUI extends JFrame {
 
 		bReadSteps.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent ae) {  
-				// get recipe
-				Recipes readRecipe;
-				readRecipe = recipeList.get(0); // replace line with method that has inputs recipe name outputs recipe 
 				
 				// wrap text field	
 				readRecipeTA.setLineWrap(true);
