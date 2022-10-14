@@ -118,8 +118,8 @@ public class RecipeCreation {
     public static String stepsToString(String[] steps) {
     	String stepStr = "";
     	for (int i = 0; i<steps.length; i++) {
-            stepStr = formattedSentence(steps[i]);
-    		stepStr = stepStr + (i==0?"":"  ") + String.format("%d. %s", i+1, steps[i]);
+            String temp = formattedSentence(steps[i]);
+    		stepStr = stepStr + (i==0?"":"  ") + String.format("%d. %s", i+1, temp);
         }
     	return stepStr;
 	}
