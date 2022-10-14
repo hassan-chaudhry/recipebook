@@ -11,11 +11,12 @@ public class RecipeBookGUI extends JFrame {
 	private static CardLayout cardLayout;
 	private static JFrame frame;
 	private static JPanel cardPanel, pMain, pCreation, pRetrieval, pBrowse, pSearch, pRead, pModify;
-	private static JLabel lMain, lCreation, lCreation1, lCreation2, lCreation3, lCreation4, lRetrieval, lBrowse, lSearch, lSearch1, lRead, lModify;
+	private static JLabel lMain, lCreation, lCreation1, lCreation2, lCreation3, lCreation4, lRetrieval, lBrowse, lSearch, lSearch1, lRead, lModify, lModify1, lModify2;
 	private static JButton bBack1, bBack2, bBack3, bBack4, bBack5, bBack6, bCreation, bRecipeToCreate, bRetrieval, bBrowse, bSearch, bRecipeToSearch, bReadEntire, bReadSteps, bNext, bModify, bExit;
 	private static JTextField recipeNameTF, recipeDescriptionTF, recipeToSearchTF;
 	private static JTextArea recipes, recipeIngredientsTA, recipeStepsTA, readRecipeTA;
 	int stepCounter;
+
 	// retrieve recipes already in recipes.txt file
 	private static Recipes recipe = new Recipes();
 	private static ArrayList<Recipes> recipeList = new ArrayList<Recipes> ();	
@@ -24,10 +25,10 @@ public class RecipeBookGUI extends JFrame {
 
 	public static void main(String args[]) {
 
-		RecipeBookGUI rbg = new RecipeBookGUI();
-		rbg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-		rbg.setResizable(false);
-		rbg.setVisible(true);
+	RecipeBookGUI rbg = new RecipeBookGUI();
+	rbg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+	rbg.setResizable(false);
+	rbg.setVisible(true);
 
 	}
 
@@ -44,11 +45,16 @@ public class RecipeBookGUI extends JFrame {
 		cardLayout = new CardLayout(); 
 		cardPanel.setLayout(cardLayout);
 
-		// main "Recipe Book" page
+		/*
+			"Recipe Book" page
+		*/
+
+		// create panel
 		pMain = new JPanel(); // create new panel
 		pMain.setBackground(Color.decode("#ECB390"));
         pMain.setLayout(null);
 
+        // create & format labels
 		lMain = new JLabel("Recipe Book",JLabel.CENTER); 
         lMain.setOpaque(true);
         lMain.setFont(new Font("Serif", Font.BOLD, 40));
@@ -56,7 +62,7 @@ public class RecipeBookGUI extends JFrame {
 		lMain.setForeground(Color.decode("#DF7861"));
         lMain.setBounds(0, 0, 600, 100);
 
-
+        // create & format buttons
 		bCreation = new JButton("Create Recipe"); 
 		bRetrieval = new JButton("Retrieve Recipe"); 
 		bModify = new JButton("Modify Recipe");
@@ -78,17 +84,22 @@ public class RecipeBookGUI extends JFrame {
         bExit.setForeground(Color.decode("#EDDBC0"));
         bExit.setBackground(Color.decode("#7D6E83"));
 
-
+        // add all components to panel
 		pMain.add(lMain); 
 		pMain.add(bCreation); 
 		pMain.add(bRetrieval); 
 		pMain.add(bModify); 
 		pMain.add(bExit);
 
-		// "Recipe Creation" page
+		/*
+			"Recipe Creation" page
+		*/
+
+		// create panel
 		pCreation = new JPanel();
 		pCreation.setBackground(new java.awt.Color(44,238,144));
 
+		// create labels & text fields
 		lCreation = new JLabel("                                                 Recipe Creation                                                 "); // spaces for formatting purposes
 		lCreation.setForeground(Color.WHITE);
 
@@ -104,10 +115,11 @@ public class RecipeBookGUI extends JFrame {
 		lCreation4 = new JLabel("Enter recipe steps (place each step on a new line): ");
 		recipeStepsTA = new JTextArea("", 5, 45);
 
+		// create buttons
 		bRecipeToCreate = new JButton("Submit");
-
 		bBack1 = new JButton("Go Back");
 
+		// add all components to panel
 		pCreation.add(lCreation);
 		pCreation.add(lCreation1);
 		pCreation.add(recipeNameTF);
@@ -120,59 +132,84 @@ public class RecipeBookGUI extends JFrame {
 		pCreation.add(bRecipeToCreate);
 		pCreation.add(bBack1);
 
-		// "Recipe Retrieval" page
+		/*
+			"Recipe Retrieval" page
+		*/
+
+		// create panel
 		pRetrieval = new JPanel();
 		pRetrieval.setBackground(new java.awt.Color(66, 135, 245));
 
+		// create labels
 		lRetrieval = new JLabel("                                                 Recipe Retrieval                                                 "); // spaces for formatting purposes
 		lRetrieval.setForeground(Color.WHITE);
 
+		// create buttons
 		bBrowse = new JButton("Browse Recipes");
 		bSearch = new JButton("Search For A Recipe");
 		bBack2 = new JButton("Go Back");
 
+		// add all components to panel
 		pRetrieval.add(lRetrieval);
 		pRetrieval.add(bBrowse);
 		pRetrieval.add(bSearch);
 		pRetrieval.add(bBack2);
 
-			// "Browse Recipes" page
+			/*
+				"Recipe Browse" page
+			*/
+
+			// create panel
 			pBrowse = new JPanel();
 			pBrowse.setBackground(new java.awt.Color(102, 204, 255));
 
+			// create labels
 			lBrowse = new JLabel("Browse Recipes");
 			lBrowse.setForeground(Color.WHITE);
 
+			// get all recipes
 			String allRecipes = RecipeRetrieval.allRecipeNames(); // returns string of recipe list where recipes are seperated by \n
 			recipes = new JTextArea(allRecipes, 15, 45);
 
+			// create buttons
 			bBack4 = new JButton("Go Back");
 
+			// add all components to panel
 			pBrowse.add(lBrowse);
 			pBrowse.add(recipes);
 			pBrowse.add(bBack4);
 
-			// "Search For A Recipe" page 
+			/*
+				"Recipe Search" page
+			*/
+
+			// create panel
 			pSearch = new JPanel();
 			pSearch.setBackground(new java.awt.Color(102, 204, 255));
 
+			// create labels & text fields
 			lSearch = new JLabel("                                                 Search For A Recipe                                                 "); // spaces for formatting purposes
 			lSearch.setForeground(Color.WHITE);
 
 			lSearch1 = new JLabel("Enter recipe name: ");
-
 			recipeToSearchTF = new JTextField("", 35);
-			bRecipeToSearch = new JButton("Submit");
 
+			// create buttons
+			bRecipeToSearch = new JButton("Submit");
 			bBack5 = new JButton("Go Back");
 
+			// add all components to panel
 			pSearch.add(lSearch);
 			pSearch.add(lSearch1);
 			pSearch.add(recipeToSearchTF);
 			pSearch.add(bRecipeToSearch);
 			pSearch.add(bBack5);
 
-		// "Recipe Reading" page
+		/*
+			"Recipe Reading" page
+		*/
+
+		// create panel
 		pRead = new JPanel();
 		pRead.setBackground(new java.awt.Color(238,130,238));
 
@@ -195,17 +232,35 @@ public class RecipeBookGUI extends JFrame {
 		pRead.add(bBack6);
 		pRead.add(readRecipeTA);
 
-		// "Recipe Modification" page
+		/*
+			"Recipe Modification" page
+		*/
+
+		// create panel
 		pModify = new JPanel();
 		pModify.setBackground(new java.awt.Color(255, 149, 72));
 
+		// create labels
 		lModify = new JLabel("                                                 Recipe Modification                                                 "); // spaces for formatting purposes
 		lModify.setForeground(Color.WHITE);
 
+		lModify1 = new JLabel("Feature Coming Soon in the Next Update!");
+		lModify1.setFont(new Font("Serif", Font.PLAIN, 25));
+		lModify2 = new JLabel("                              Check Back in 2023.                              "); // spaces for formatting purposes
+		lModify2.setFont(new Font("Serif", Font.PLAIN, 25));
+
+		// create buttons
 		bBack3 = new JButton("Go Back");
 
+		// add all components to panel
 		pModify.add(lModify);
+		pModify.add(lModify1);
+		pModify.add(lModify2);
 		pModify.add(bBack3);
+
+		/*
+			Combine panels & display
+		*/
 
 		// add every other panel to main "cardPanel" panel
 		cardPanel.add(pMain, "Recipe Book");
@@ -219,10 +274,13 @@ public class RecipeBookGUI extends JFrame {
 		// display "Recipe Book" page
 		getContentPane().add(cardPanel, BorderLayout.CENTER);
 
-		// buttons to switch pages
+		/*
+			Buttons - Allows user to navigate pages and submit text input
+		*/
+
 		bBack1.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent ae) {  
-				cardLayout.show(cardPanel, "" + "Recipe Book");
+				cardLayout.show(cardPanel, "" + "Recipe Book"); // switch to "Recipe Book" page
 			}		  
 		}); 
 
@@ -240,7 +298,7 @@ public class RecipeBookGUI extends JFrame {
 
 		bBack4.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent ae) {  
-				cardLayout.show(cardPanel, "" + "Recipe Retrieval");
+				cardLayout.show(cardPanel, "" + "Recipe Retrieval"); // switch to "Recipe Retrieval" page
 			}		  
 		}); 
 
@@ -260,12 +318,14 @@ public class RecipeBookGUI extends JFrame {
 
 		bCreation.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent ae) {  
-				cardLayout.show(cardPanel, "" + "Recipe Creation");
+				cardLayout.show(cardPanel, "" + "Recipe Creation");  // switch to "Recipe Creation" page
 			}		  
 		});   
 
-		bRecipeToCreate.addActionListener(new ActionListener() {  
+		bRecipeToCreate.addActionListener(new ActionListener() { // to create a recipe
 			public void actionPerformed(ActionEvent ae) {  
+
+				// get user input
 				String recipeName = recipeNameTF.getText().trim();
 				String recipeDescription = recipeDescriptionTF.getText().trim();
 				String recipeIngredients = recipeIngredientsTA.getText().trim();
@@ -279,9 +339,6 @@ public class RecipeBookGUI extends JFrame {
 				recipeIngredientsTA.setText("");
 				recipeStepsTA.setText("");
 
-				// retrieve recipes already in recipes.txt file
-	
-
 				cardLayout.show(cardPanel, "" + "Recipe Book");
 			}		  
 		}); 
@@ -294,23 +351,23 @@ public class RecipeBookGUI extends JFrame {
 
 		bBrowse.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent ae) {  
-				cardLayout.show(cardPanel, "" + "Browse Recipes");
+				cardLayout.show(cardPanel, "" + "Browse Recipes"); // switch to "Browse Recipes" page
 			}		  
 		}); 
 
 		bSearch.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent ae) {  
-				cardLayout.show(cardPanel, "" + "Search For A Recipe");
+				cardLayout.show(cardPanel, "" + "Search For A Recipe"); // switch to "Search For A Recipe" page
 			}		  
 		}); 
 
-		bRecipeToSearch.addActionListener(new ActionListener() {  
+		bRecipeToSearch.addActionListener(new ActionListener() { // to retrieve a recipe
 			public void actionPerformed(ActionEvent ae) {  
 				String recipeToSearch = recipeToSearchTF.getText();
 
 				System.out.println(recipeToSearch); // replace line with method that has inputs recipe name outputs recipe name
 				
-				// if recipe found go to "Recipe Reading Page," else print error
+				// if recipe found go to "Recipe Reading Page," else show error
 				if(true) {
 				    cardLayout.show(cardPanel, "" + "Recipe Reading");
 				}
@@ -318,6 +375,7 @@ public class RecipeBookGUI extends JFrame {
 					JOptionPane.showMessageDialog(null, "Recipe '" + recipeToSearch + "' not found. Please try again.", "Error", JOptionPane.WARNING_MESSAGE); // error message
 				}
 
+				// clear text field
 				recipeToSearchTF.setText("");
 			}		  
 		}); 
@@ -332,6 +390,7 @@ public class RecipeBookGUI extends JFrame {
 
 		bReadSteps.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent ae) {  
+				// get recipe and wrap text field
 				Recipes readRecipe = recipeList.get(0);
 				readRecipeTA.setLineWrap(true);
 				readRecipeTA.setText("Recipe Steps: \n");
@@ -341,6 +400,7 @@ public class RecipeBookGUI extends JFrame {
 				pRead.add(bNext);
 				bNext.setVisible(true);
 
+				// set up iteration counter
 				stepCounter = 0;
 				String steps[] = readRecipe.getSteps().split("(?<=.  )"); 
 				readRecipeTA.append(steps[stepCounter] + " \n"); // display first recipe step
@@ -348,11 +408,11 @@ public class RecipeBookGUI extends JFrame {
 				bNext.addActionListener(new ActionListener() { // iterates through & displays rest of recipe steps 
 					public void actionPerformed(ActionEvent ae) {  
 					stepCounter++;
-					if (stepCounter < steps.length) {
-						readRecipeTA.append(steps[stepCounter] + " \n");
+					if (stepCounter < steps.length) { 
+						readRecipeTA.append(steps[stepCounter] + " \n"); // print next step
 					}
 
-					if (stepCounter >= steps.length) {
+					if (stepCounter >= steps.length) { // if all steps printed, remove "Next Step" button
 						bNext.setVisible(false);
 					}
 
@@ -363,12 +423,12 @@ public class RecipeBookGUI extends JFrame {
 
 		bModify.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent ae) {  
-				cardLayout.show(cardPanel, "" + "Recipe Modification");
+				cardLayout.show(cardPanel, "" + "Recipe Modification"); // switch to "Recipe Modification" page
 			}		  
 		}); 
 
 		bExit.addActionListener(new ActionListener() {  
-			public void actionPerformed(ActionEvent ae) {  
+			public void actionPerformed(ActionEvent ae) { // to exit program
 				System.exit(0);
 			}		  
 		}); 
