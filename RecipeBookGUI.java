@@ -296,10 +296,11 @@ public class RecipeBookGUI extends JFrame {
 			public void actionPerformed(ActionEvent ae) {  
 				String recipeToSearch = recipeToSearchTF.getText();
 
-				System.out.println(recipeToSearch); // replace line with method that has inputs recipe name outputs recipe name
+				Recipes myRecipe = RecipeRetrieval.searchByNameGUI(recipeToSearch);
+                myRecipe.displayFullRecipe(); // replace line with method that has inputs recipe name outputs recipe name
 				
 				// if recipe found go to "Recipe Reading Page," else print error
-				if(true) {
+				if(myRecipe != null) {
 				    cardLayout.show(cardPanel, "" + "Recipe Reading");
 				}
 				else {

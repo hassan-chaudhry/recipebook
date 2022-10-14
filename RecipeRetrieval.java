@@ -112,6 +112,16 @@ public class RecipeRetrieval {
         }
      }
 
+     public static Recipes searchByNameGUI(String name){
+        ArrayList<Recipes> list = LoadRecipes();
+        for (int i = 0; i<list.size(); i++){
+            if (list.get(i).getName().toLowerCase().equals(name.toLowerCase())){
+                return list.get(i);
+            }
+        }
+        return null;
+     }
+
      public static ArrayList<Recipes> vagueSearchByName(ArrayList<Recipes> list){
         ArrayList<Recipes> searchResults = new ArrayList<>();
 
