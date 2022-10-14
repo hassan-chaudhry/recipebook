@@ -121,8 +121,8 @@ The "Recipe Reading" page allows the user to read a recipe in two ways: read the
 
 <img width="599" alt="reciperead2" src="https://user-images.githubusercontent.com/82198103/195946127-77ffae19-ba77-4fbe-812f-ba0fb8d09095.png">
 
-#### Modify Recipe
-The "Modify Recipe" page will be implemented in the next update!
+#### Recipe Modifcation
+The "Recipe Modifcation" page will be implemented in the next update!
 
 <img width="601" alt="recipemodify" src="https://user-images.githubusercontent.com/82198103/195946306-fe99850e-2820-45ac-ba8f-77f1a9192a7d.png">
 
