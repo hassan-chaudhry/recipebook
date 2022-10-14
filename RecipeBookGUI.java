@@ -12,26 +12,29 @@ public class RecipeBookGUI extends JFrame {
 	private static JFrame frame;
 	private static JPanel cardPanel, pMain, pCreation, pRetrieval, pBrowse, pSearch, pRead, pModify;
 	private static JLabel lMain, lCreation, lCreation1, lCreation2, lCreation3, lCreation4, lRetrieval, lBrowse, lSearch, lSearch1, lRead, lModify;
-	private static JButton bBack1, bBack2, bBack3, bBack4, bBack5, bBack6, bCreation, bRecipeToCreate, bRetrieval, bBrowse, bSearch, bRecipeToSearch, bReadEntire, bReadSteps, bModify, bExit;
+	private static JButton bBack1, bBack2, bBack3, bBack4, bBack5, bBack6, bCreation, bRecipeToCreate, bRetrieval, bBrowse, bSearch, bRecipeToSearch, bReadEntire, bReadSteps, bNext, bModify, bExit;
 	private static JTextField recipeNameTF, recipeDescriptionTF, recipeToSearchTF;
-	private static JTextArea recipes, recipeIngredientsTA, recipeStepsTA;
-	
-	public static void main(String args[]) {
-		// retrieve recipes already in recipes.txt file
-		// Recipes recipe = new Recipes();
-		// ArrayList<Recipes> recipeList = new ArrayList<Recipes> ();	
-		// RecipeRetrieval data = new RecipeRetrieval();
-		// ArrayList<Recipes> hold = data.LoadRecipes();
-		// recipeList = hold;
+	private static JTextArea recipes, recipeIngredientsTA, recipeStepsTA, readRecipeTA;
+	int stepCounter;
+	// retrieve recipes already in recipes.txt file
+	private static Recipes recipe = new Recipes();
+	private static ArrayList<Recipes> recipeList = new ArrayList<Recipes> ();	
+	private static RecipeRetrieval data = new RecipeRetrieval();
+	private static ArrayList<Recipes> hold = data.LoadRecipes();
 
-		RecipeBookGUI rbg = new RecipeBookGUI();
-		rbg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-		rbg.setResizable(false);
-		rbg.setVisible(true); 
+	public static void main(String args[]) {
+
+			RecipeBookGUI rbg = new RecipeBookGUI();
+			rbg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+			rbg.setResizable(false);
+			rbg.setVisible(true);
 
 	}
 
 	public RecipeBookGUI() {
+
+		recipeList = hold;
+
 		// set frame
 		setTitle("Recipe Book");
 		setSize(600, 375);
@@ -117,8 +120,8 @@ public class RecipeBookGUI extends JFrame {
 			lBrowse = new JLabel("Browse Recipes");
 			lBrowse.setForeground(Color.WHITE);
 
-			String recipe = RecipeRetrieval.allRecipeNames(); //returns string of recipe list where recipes are seperated by \n
-			recipes = new JTextArea(recipe, 15, 45);
+			String allRecipes = RecipeRetrieval.allRecipeNames(); // returns string of recipe list where recipes are seperated by \n
+			recipes = new JTextArea(allRecipes, 15, 45);
 
 			bBack4 = new JButton("Go Back");
 
@@ -150,17 +153,24 @@ public class RecipeBookGUI extends JFrame {
 		pRead = new JPanel();
 		pRead.setBackground(new java.awt.Color(238,130,238));
 
+		// create labels
 		lRead = new JLabel("                                                 Recipe Reading                                                 "); // spaces for formatting purposes
 		lRead.setForeground(Color.WHITE);
 
+		// create text fields
+		readRecipeTA = new JTextArea("", 15, 45);
+
+		// create buttons
 		bReadEntire = new JButton("Read Entire Recipe");
 		bReadSteps = new JButton("Read Recipe Steps Only");
 		bBack6 = new JButton("Go Back");
 
+		// add all components to pRead
 		pRead.add(lRead);
 		pRead.add(bReadEntire);
 		pRead.add(bReadSteps);
 		pRead.add(bBack6);
+		pRead.add(readRecipeTA);
 
 		// "Recipe Modification" page
 		pModify = new JPanel();
@@ -219,6 +229,7 @@ public class RecipeBookGUI extends JFrame {
 
 		bBack6.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent ae) {  
+				readRecipeTA.setText("");
 				cardLayout.show(cardPanel, "" + "Recipe Retrieval");
 			}		  
 		});
@@ -237,13 +248,16 @@ public class RecipeBookGUI extends JFrame {
 				String recipeIngredients = recipeIngredientsTA.getText().trim();
 				String recipeSteps = recipeStepsTA.getText().trim();
 
-				RecipeCreation.createRecipeGUI(recipeName,recipeDescription,recipeIngredients,recipeSteps);
+				RecipeCreation.createRecipeGUI(recipeName,recipeDescription,recipeIngredients,recipeSteps); // creates recipe based on user input
 
 				// clear text fields
 				recipeNameTF.setText("");
 				recipeDescriptionTF.setText("");
 				recipeIngredientsTA.setText("");
 				recipeStepsTA.setText("");
+
+				// retrieve recipes already in recipes.txt file
+	
 
 				cardLayout.show(cardPanel, "" + "Recipe Book");
 			}		  
@@ -282,6 +296,45 @@ public class RecipeBookGUI extends JFrame {
 				}
 
 				recipeToSearchTF.setText("");
+			}		  
+		}); 
+
+		bReadEntire.addActionListener(new ActionListener() {  
+			public void actionPerformed(ActionEvent ae) {  
+				Recipes readRecipe = recipeList.get(0);
+				readRecipeTA.setLineWrap(true);
+				readRecipeTA.setText("Recipe Name: " + readRecipe.getName() + "\nRecipe Description: " + readRecipe.getDescription() + "\nRecipe Ingredients: " + readRecipe.getIngredients() + "\nRecipe Steps: " + readRecipe.getSteps());
+			}		  
+		}); 
+
+		bReadSteps.addActionListener(new ActionListener() {  
+			public void actionPerformed(ActionEvent ae) {  
+				Recipes readRecipe = recipeList.get(0);
+				readRecipeTA.setLineWrap(true);
+				readRecipeTA.setText("Recipe Steps: \n");
+
+				// button to get next step
+				bNext = new JButton("Next Step");
+				pRead.add(bNext);
+				bNext.setVisible(true);
+
+				stepCounter = 0;
+				String steps[] = readRecipe.getSteps().split("(?<=.  )"); 
+				readRecipeTA.append(steps[stepCounter] + " \n"); // display first recipe step
+
+				bNext.addActionListener(new ActionListener() { // iterates through & displays rest of recipe steps 
+					public void actionPerformed(ActionEvent ae) {  
+					stepCounter++;
+					if (stepCounter < steps.length) {
+						readRecipeTA.append(steps[stepCounter] + " \n");
+					}
+
+					if (stepCounter >= steps.length) {
+						bNext.setVisible(false);
+					}
+
+				}			  
+				});
 			}		  
 		}); 
 
