@@ -24,10 +24,10 @@ public class RecipeBookGUI extends JFrame {
 
 	public static void main(String args[]) {
 
-			RecipeBookGUI rbg = new RecipeBookGUI();
-			rbg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-			rbg.setResizable(false);
-			rbg.setVisible(true);
+		RecipeBookGUI rbg = new RecipeBookGUI();
+		rbg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+		rbg.setResizable(false);
+		rbg.setVisible(true);
 
 	}
 
@@ -49,7 +49,7 @@ public class RecipeBookGUI extends JFrame {
 		pMain.setBackground(Color.decode("#ECB390"));
         pMain.setLayout(null);
 
-		lMain = new JLabel("Recipe Book",JLabel.CENTER); // spaces for formatting purposes
+		lMain = new JLabel("Recipe Book",JLabel.CENTER); 
         lMain.setOpaque(true);
         lMain.setFont(new Font("Serif", Font.BOLD, 40));
         lMain.setBackground(Color.decode("#FCF8E8"));
@@ -57,15 +57,14 @@ public class RecipeBookGUI extends JFrame {
         lMain.setBounds(0, 0, 600, 100);
 
 
-		bCreation = new JButton("Create Recipe"); // create new button
-		bRetrieval = new JButton("Retrieve Recipe"); // create new button
+		bCreation = new JButton("Create Recipe"); 
+		bRetrieval = new JButton("Retrieve Recipe"); 
 		bModify = new JButton("Modify Recipe");
 		bExit = new JButton("Exit");
 
         bCreation.setBounds(60,150,200, 50);
         bCreation.setBorderPainted(false);
         bCreation.setBackground(Color.decode("#EDDBC0"));
-        //bCreation.setFont(new Font("Helvetica", Font.BOLD, 14));
 
         bRetrieval.setBounds(320,150,200, 50);
         bRetrieval.setBorderPainted(false);
@@ -76,16 +75,15 @@ public class RecipeBookGUI extends JFrame {
         bModify.setBackground(Color.decode("#EDDBC0"));
 
         bExit.setBounds(320,230,200, 50);
-        //bExit.setBorderPainted(false);
         bExit.setForeground(Color.decode("#EDDBC0"));
         bExit.setBackground(Color.decode("#7D6E83"));
 
 
-		pMain.add(lMain); // add label to panel
-		pMain.add(bCreation); // add button to panel
-		pMain.add(bRetrieval); // add button to panel
-		pMain.add(bModify); // add button to panel
-		pMain.add(bExit); // add button to panel
+		pMain.add(lMain); 
+		pMain.add(bCreation); 
+		pMain.add(bRetrieval); 
+		pMain.add(bModify); 
+		pMain.add(bExit);
 
 		// "Recipe Creation" page
 		pCreation = new JPanel();
@@ -310,11 +308,10 @@ public class RecipeBookGUI extends JFrame {
 			public void actionPerformed(ActionEvent ae) {  
 				String recipeToSearch = recipeToSearchTF.getText();
 
-				Recipes myRecipe = RecipeRetrieval.searchByNameGUI(recipeToSearch);
-                myRecipe.displayFullRecipe(); // replace line with method that has inputs recipe name outputs recipe name
+				System.out.println(recipeToSearch); // replace line with method that has inputs recipe name outputs recipe name
 				
 				// if recipe found go to "Recipe Reading Page," else print error
-				if(myRecipe != null) {
+				if(true) {
 				    cardLayout.show(cardPanel, "" + "Recipe Reading");
 				}
 				else {
