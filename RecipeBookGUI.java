@@ -57,31 +57,37 @@ public class RecipeBookGUI extends JFrame {
 
 		// create panel
 		pMain = new JPanel(); // create new panel
-		pMain.setBackground(Color.decode("#F5E9A3"));
+		pMain.setBackground(Color.decode("#FEFEEE"));
 		pMain.setLayout(null);
 
 		// create & format labels
 		lMain = new JLabel("Recipe Book",JLabel.CENTER); 
 		lMain.setOpaque(true);
-		lMain.setFont(new Font("Serif", Font.BOLD, 50));
+		lMain.setFont(new Font("Serif", Font.BOLD, 60));
 		lMain.setBackground(Color.decode("#FEFEEE"));
 		lMain.setForeground(Color.decode("#DF7861"));
         //lMain.setForeground(Color.decode("#7D6E83"));
-		lMain.setBounds(0, 50, 600, 150);
+		lMain.setBounds(70, 70, 440, 100);
+
+        drawRectangle R2 = new drawRectangle(60, 60, 460, 130, "#DF7861");
+        R2.setBounds(60, 60, 460, 130);
+        //drawRectangle R3 = new drawRectangle(90, 400, 400, 130, "#FEFEEE");
+        //R3.setBounds(90, 400, 400, 130);
+        //pMain.add(R3);
 
 		// create & format buttons
-        bCreation = new roundButton("Create Recipe", Color.decode("#FFFDE3"));
-        bCreation.setBounds(50,235,220, 70);
+        bCreation = new roundButton("Create Recipe", Color.decode("#E0D8B0"));
+        bCreation.setBounds(60,230,215, 70);
 
-        bRetrieval = new roundButton("Retrieve Recipe", Color.decode("#FFFDE3")); 
-		bRetrieval.setBounds(320,235,220, 70);
+        bRetrieval = new roundButton("Retrieve Recipe", Color.decode("#E0D8B0")); 
+		bRetrieval.setBounds(305,230,215, 70);
 
-		bModify = new roundButton("Modify Recipe", Color.decode("#FFFDE3"));
-		bModify.setBounds(50,340,220, 70);
+		bModify = new roundButton("Modify Recipe", Color.decode("#E0D8B0"));
+		bModify.setBounds(60,330,215, 70);
 
-        bExit = new roundButton("Exit", Color.decode("#7D6E83"));
+        bExit = new roundButton("Exit", Color.decode("#DF7861"));
         bExit.setForeground(Color.decode("#EDDBC0"));
-        bExit.setBounds(320,340,220, 70);
+        bExit.setBounds(305,330,215, 70);
 
 		// add all components to panel
 		pMain.add(lMain); 
@@ -89,6 +95,7 @@ public class RecipeBookGUI extends JFrame {
 		pMain.add(bRetrieval); 
 		pMain.add(bModify); 
 		pMain.add(bExit);
+        pMain.add(R2);
 
 		/*
 			"Recipe Creation" page
@@ -101,7 +108,7 @@ public class RecipeBookGUI extends JFrame {
 
 		// create labels & text fields
 		lCreation = new JLabel("Recipe Creation",JLabel.CENTER); // spaces for formatting purposes
-        lCreation.setFont(new Font("Sans-Serif", Font.BOLD, 30));
+        lCreation.setFont(new Font("Serif", Font.BOLD, 40));
         lCreation.setBounds(0, 0, 600, 100);
         //lCreation.setForeground(Color.decode("#1C6758"));
 
@@ -242,9 +249,9 @@ public class RecipeBookGUI extends JFrame {
 
             // create buttons
 			bRecipeToSearch = new roundButton("Submit",Color.decode("#F0F2B6"));
-            bRecipeToSearch.setBounds(320,320,170,40);
+            bRecipeToSearch.setBounds(300,320,210,40);
 			bBack5 = new roundButton("Go Back", Color.decode("#E3C770"));
-            bBack5.setBounds(90, 320, 170, 40);
+            bBack5.setBounds(70, 320, 210, 40);
 
 			// add all components to panel
 			pSearch.add(lSearch);
@@ -264,25 +271,27 @@ public class RecipeBookGUI extends JFrame {
 
 		// create labels
 		lRead = new JLabel("Recipe Reading",JLabel.CENTER); // spaces for formatting purposes
-        lRead.setBounds(0,0,600,100);
+        lRead.setBounds(0,0,580,100);
         lRead.setFont(new Font("Serif", Font.BOLD, 40));
 
 		// create text fields
-		readRecipeTA = new JTextArea("", 15, 45);
+		readRecipeTA = new roundTextArea("", 15, 45,Color.decode("#FEFEEE"),Color.decode("#E3C770"),3);
         readRecipeTA.setBounds(70,150,440,200);
+        readRecipeTA.setMargin(new Insets(15,15,15,15));
+        readRecipeTA.setEditable(false);
 
 		// create buttons
-		bReadEntire = new JButton("Read Entire Recipe");
+		bReadEntire = new roundButton("Read Entire Recipe", Color.decode("#F0F2B6"),Color.decode("#E3C770"));
         bReadEntire.setBounds(70,100,200,40);
 
-		bReadSteps = new JButton("Read Recipe Steps Only");
+		bReadSteps = new roundButton("Read Recipe Steps Only", Color.decode("#F0F2B6"),Color.decode("#E3C770"));
         bReadSteps.setBounds(310,100,200,40);
 
-		bBack6 = new JButton("Go Back");
-        bBack6.setBounds(170,380,250,50);
+		bBack6 = new roundButton("Go Back", Color.decode("#E3C770"));
+        bBack6.setBounds(165,380,250,50);
 
-        bNext = new JButton("Next Step");
-        bNext.setBounds(400,340,100,30);
+        bNext = new roundButton("Next Step", Color.decode("#E3C770"));
+        bNext.setBounds(400,340,100,20);
         pRead.add(bNext);
         bNext.setVisible(false);
 
@@ -614,12 +623,22 @@ public class RecipeBookGUI extends JFrame {
 	
         private Color fillColor;
         private Color borderColor;
+        private int thickness;
+
+        public roundTextArea(String text, int rows, int colomns, Color fill, Color border, int thickness) {
+            super(text,rows,colomns);
+            setOpaque(false); 
+            this.fillColor = fill;
+            this.borderColor = border;
+            this.thickness = thickness;
+        }
 
         public roundTextArea(String text, int rows, int colomns, Color fill, Color border) {
             super(text,rows,colomns);
             setOpaque(false); 
             this.fillColor = fill;
             this.borderColor = border;
+            this.thickness = 1;
         }
 
         public roundTextArea(String text, int rows, int colomns, Color fill) {
@@ -627,6 +646,7 @@ public class RecipeBookGUI extends JFrame {
             setOpaque(false); 
             this.fillColor = fill;
             this.borderColor = fill;
+            this.thickness = 1;
         }
         
         protected void paintComponent(Graphics g) {
@@ -639,7 +659,10 @@ public class RecipeBookGUI extends JFrame {
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_ON);
             g2d.setColor(this.borderColor);
-            g2d.drawRoundRect(0, 0, getWidth()-2, getHeight()-2, 12, 12);
+            if (thickness==1){
+                g2d.drawRoundRect(0, 0, getWidth()-2, getHeight()-2, 12, 12);
+            } else {
+                g2d.drawRoundRect(thickness/2, thickness/2, getWidth()-thickness, getHeight()-thickness, 12, 12);            }
         }
     }
 
