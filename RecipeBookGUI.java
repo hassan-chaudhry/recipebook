@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -188,12 +190,12 @@ public class RecipeBookGUI extends JFrame {
 
 		// create buttons
 		bBrowse = new roundButton("Browse Recipes", Color.decode("#FFFDE3"), Color.decode("#E3C770"),3);
-        bBrowse.setBounds(340, 100, 200, 80);
+        bBrowse.setBounds(350, 100, 200, 80);
 		bSearch = new roundButton("Search For A Recipe", Color.decode("#FFFDE3"), Color.decode("#E3C770"),3);
-        bSearch.setBounds(340, 200, 200, 80);
+        bSearch.setBounds(350, 200, 200, 80);
 		bBack2 = new roundButton("Go Back", Color.decode("#E3C770"));
         //bBack2.setForeground(Color.decode("#FFFDE3"));
-        bBack2.setBounds(340, 300, 200, 80);
+        bBack2.setBounds(350, 300, 200, 80);
 
 		// add all components to panel
 		//pRetrieval.add(lRetrieval);
@@ -240,23 +242,32 @@ public class RecipeBookGUI extends JFrame {
 
 			// create panel
 			pSearch = new JPanel();
-			pSearch.setBackground(new java.awt.Color(102, 204, 255));
+			pSearch.setBackground(Color.decode("#FFFDE3"));
+            pSearch.setLayout(null);
 
 			// create labels & text fields
-			lSearch = new JLabel("                                                 Search For A Recipe                                                 "); // spaces for formatting purposes
-			lSearch.setForeground(Color.WHITE);
+			lSearch = new JLabel("Search For A Recipe",JLabel.CENTER); // spaces for formatting purposes
+            lSearch.setFont(new Font("Serif", Font.BOLD, 40));
+            lSearch.setBounds(0,0,570,200);
 
 			lSearch1 = new JLabel("Enter recipe name: ");
-			recipeToSearchTF = new JTextField("", 35);
+            lSearch1.setFont(new Font("Serif", Font.PLAIN, 20));
+            lSearch1.setBounds(70, 150, 440, 50);
+
+			JTextArea recipeToSearchTA = new roundTextArea("",1, 35,Color.decode("#FEFEEE"),Color.decode("#E3C770"));
+			recipeToSearchTA.setBounds(70,200,440,100);
+            recipeToSearchTA.setMargin(new Insets(15,15,15,15));
 
 			// create buttons
-			bRecipeToSearch = new JButton("Submit");
-			bBack5 = new JButton("Go Back");
+			bRecipeToSearch = new roundButton("Submit",Color.decode("#F0F2B6"));
+            bRecipeToSearch.setBounds(320,320,170,40);
+			bBack5 = new roundButton("Go Back", Color.decode("#E3C770"));
+            bBack5.setBounds(90, 320, 170, 40);
 
 			// add all components to panel
 			pSearch.add(lSearch);
 			pSearch.add(lSearch1);
-			pSearch.add(recipeToSearchTF);
+			pSearch.add(recipeToSearchTA);
 			pSearch.add(bRecipeToSearch);
 			pSearch.add(bBack5);
 
