@@ -239,7 +239,6 @@ public class RecipeBookGUI extends JFrame {
 			/*
 				"Recipe Search" page
 			*/
-
 			// create panel
 			pSearch = new JPanel();
 			pSearch.setBackground(Color.decode("#FFFDE3"));
@@ -254,11 +253,11 @@ public class RecipeBookGUI extends JFrame {
             lSearch1.setFont(new Font("Serif", Font.PLAIN, 20));
             lSearch1.setBounds(70, 150, 440, 50);
 
-			JTextArea recipeToSearchTA = new roundTextArea("",1, 35,Color.decode("#FEFEEE"),Color.decode("#E3C770"));
-			recipeToSearchTA.setBounds(70,200,440,100);
-            recipeToSearchTA.setMargin(new Insets(15,15,15,15));
+			recipeToSearchTF = new roundTextField("", 35,Color.decode("#FEFEEE"),Color.decode("#E3C770"));
+			recipeToSearchTF.setBounds(70,200,440,100);
+            recipeToSearchTF.setMargin(new Insets(5,20,50,15));
 
-			// create buttons
+            // create buttons
 			bRecipeToSearch = new roundButton("Submit",Color.decode("#F0F2B6"));
             bRecipeToSearch.setBounds(320,320,170,40);
 			bBack5 = new roundButton("Go Back", Color.decode("#E3C770"));
@@ -267,7 +266,7 @@ public class RecipeBookGUI extends JFrame {
 			// add all components to panel
 			pSearch.add(lSearch);
 			pSearch.add(lSearch1);
-			pSearch.add(recipeToSearchTA);
+			pSearch.add(recipeToSearchTF);
 			pSearch.add(bRecipeToSearch);
 			pSearch.add(bBack5);
 
