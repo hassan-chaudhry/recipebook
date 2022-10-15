@@ -56,49 +56,31 @@ public class RecipeBookGUI extends JFrame {
 
 		// create panel
 		pMain = new JPanel(); // create new panel
-		pMain.setBackground(Color.decode("#ECB390"));
+		pMain.setBackground(Color.decode("#F5E9A3"));
 		pMain.setLayout(null);
 
 		// create & format labels
 		lMain = new JLabel("Recipe Book",JLabel.CENTER); 
 		lMain.setOpaque(true);
-		lMain.setFont(new Font("Serif", Font.BOLD, 40));
-		lMain.setBackground(Color.decode("#FCF8E8"));
+		lMain.setFont(new Font("Serif", Font.BOLD, 50));
+		lMain.setBackground(Color.decode("#FEFEEE"));
 		lMain.setForeground(Color.decode("#DF7861"));
-		lMain.setBounds(0, 50, 600, 100);
+        //lMain.setForeground(Color.decode("#7D6E83"));
+		lMain.setBounds(0, 50, 600, 150);
 
 		// create & format buttons
-		/* 
-        bCreation = new JButton("Create Recipe"); 
-		bRetrieval = new JButton("Retrieve Recipe"); 
-		bModify = new JButton("Modify Recipe");
-		bExit = new JButton("Exit");
-        
-		bCreation.setBorderPainted(false);
-		bCreation.setBackground(Color.decode("#EDDBC0"));
+        bCreation = new roundButton("Create Recipe", Color.decode("#FFFDE3"));
+        bCreation.setBounds(50,235,220, 70);
 
-		bRetrieval.setBorderPainted(false);
- 		bRetrieval.setBackground(Color.decode("#EDDBC0"));
+        bRetrieval = new roundButton("Retrieve Recipe", Color.decode("#FFFDE3")); 
+		bRetrieval.setBounds(320,235,220, 70);
 
-		bModify.setBorderPainted(false);
-		bModify.setBackground(Color.decode("#EDDBC0"));
+		bModify = new roundButton("Modify Recipe", Color.decode("#FFFDE3"));
+		bModify.setBounds(50,340,220, 70);
 
-        bExit.setBounds(320,230,200, 50);
+        bExit = new roundButton("Exit", Color.decode("#7D6E83"));
         bExit.setForeground(Color.decode("#EDDBC0"));
-        bExit.setBackground(Color.decode("#7D6E83"));
-        */
-        bCreation = new roundButton("Create Recipe", Color.decode("#FDEEDC"), Color.decode("#FDEEDC"));
-        bCreation.setBounds(50,190,220, 70);
-
-        bRetrieval = new roundButton("Retrieve Recipe", Color.decode("#FDEEDC"), Color.decode("#FDEEDC")); 
-		bRetrieval.setBounds(320,190,220, 70);
-
-		bModify = new roundButton("Modify Recipe", Color.decode("#FDEEDC"), Color.decode("#FDEEDC"));
-		bModify.setBounds(50,290,220, 70);
-
-        bExit = new roundButton("Exit", Color.decode("#7D6E83"), Color.decode("#7D6E83"));
-        bExit.setForeground(Color.decode("#EDDBC0"));
-        bExit.setBounds(320,290,220, 70);
+        bExit.setBounds(320,340,220, 70);
 
 		// add all components to panel
 		pMain.add(lMain); 
