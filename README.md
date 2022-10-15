@@ -9,13 +9,14 @@ There are TWO main files which the user can compile: RecipeBook.java and RecipeB
 2. RecipeBookGUI.java
 
 ### 1. RecipeBook.java
+
 This is a command-line version of the program. The user can compile "RecipeBook.java" and run this file to access this program.
 
 #### Create New Recipe
 
 When the program starts running, it'll first ask if the user wants to create a new recipe, look at the pre-existing recipes, modify a recipe, or exit the program. Here, we'll show an example of the user choosing to create a new recipe.
 
-* When the program asks if the user wants to Create, Retrieve, Modify, or Exit, the user should type `1` in order to <u>start creating a  new recipe</u>.
+* When the program asks if the user wants to Create, Retrieve, Modify, or Exit, the user should type `1` in order to <u>start creating a new recipe</u>.
 * Then the program will walk the user through the process of Recipe Creation. The user can type in the Name, Description, Ingredients and Steps, following the instructions given. 
     * Note than when typing the ingredients and steps, the user should press `ENTER` each time an ingredient or a step is typed. When the user has typed in all the ingredients or steps, press `ENTER` twice.
     * The capitalization of the first letter is not required, as the program will do it automatically. 
@@ -42,12 +43,11 @@ When the program starts running, it'll first ask if the user wants to create a n
 
 ##### Search for a recipe
 
-* To view a recipe based on the exact name, the user should type `2.` To view a recipe based on a partial name, the user should type `3.` Let's take a look at the former method.
+* To view a recipe based on the exact name, the user should type `2`.To view a recipe based on a partial name, the user should type `3`. Let's take a look at the former method.
 * It'll ask the user to enter a name of the recipe. If there's a recipe under such name in the database, it will be displayed. 
     * The user can choose the display mode of the recipe, either <u>viewing all steps at once</u> or <u>view it step by step</u>.
 
 ###### View all steps
-
 
 <img width="621" alt="recipereading1" src="https://user-images.githubusercontent.com/82198103/195942422-2abf13d7-01cc-4ad1-9802-7d51e19851b8.png">
 
@@ -58,9 +58,10 @@ When the program starts running, it'll first ask if the user wants to create a n
 #### Modify a recipe
 When the program starts running, it'll first ask if the user wants to create a new recipe, look at the pre-existing recipes, modify a recipe, or exit the program. Here, we'll show an example of the user choosing to modify a recipe that is already created.
 
-* To modify a recipe the user should type `3.` The user has the option of changing a recipe or deleting it altogether.
+* To modify a recipe the user should type `3`. The user has the option of changing a recipe or deleting it altogether.
 
 ###### Changing a recipe
+
 * The user selects the recipe they would like to change. Then, they enter in the new information for the recipe. If there is something they don't want to change, they can leave the field blank. Let's take a look at an example where we change the name of "Mac and Cheese" to "Spicy Mac and Cheese."
 
 <img width="680" alt="recipemodify1" src="https://user-images.githubusercontent.com/82198103/195943743-bc3ab87d-858b-4e55-ad91-cbe6e2606b37.png">
