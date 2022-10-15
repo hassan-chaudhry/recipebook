@@ -304,25 +304,36 @@ public class RecipeBookGUI extends JFrame {
 
 		// create panel
 		pModify = new JPanel();
-		pModify.setBackground(new java.awt.Color(255, 149, 72));
-
+		pModify.setBackground(Color.decode("#FCFFE7"));
+        pModify.setLayout(null);
+        
 		// create labels
-		lModify = new JLabel("                                                 Recipe Modification                                                 "); // spaces for formatting purposes
-		lModify.setForeground(Color.WHITE);
+		lModify = new JLabel("Recipe Modification",JLabel.CENTER); // spaces for formatting purposes
+        lModify.setFont(new Font("Serif", Font.BOLD, 40));
+        lModify.setBounds(0, 0, 600, 200);
 
-		lModify1 = new JLabel("Feature Coming Soon in the Next Update!");
+		lModify1 = new JLabel("Feature Coming Soon in the Next Update!",JLabel.CENTER);
 		lModify1.setFont(new Font("Serif", Font.PLAIN, 25));
-		lModify2 = new JLabel("                              Check Back in 2023.                              "); // spaces for formatting purposes
+		lModify1.setBounds(0,150,590,100);
+
+        lModify2 = new JLabel("Check Back in 2023.",JLabel.CENTER); // spaces for formatting purposes
 		lModify2.setFont(new Font("Serif", Font.PLAIN, 25));
+		lModify2.setBounds(0,200,590,100);
 
 		// create buttons
-		bBack3 = new JButton("Go Back");
+		bBack3 = new roundButton("Go Back",Color.decode("#E0D8B0"));
+        bBack3.setBounds(190, 330, 220, 50);
 
 		// add all components to panel
 		pModify.add(lModify);
 		pModify.add(lModify1);
 		pModify.add(lModify2);
 		pModify.add(bBack3);
+
+        drawRectangle R1 = new drawRectangle(50,100,400,20,"#E0D8B0");
+        R1.setBounds(100,110,400,15);
+        pModify.add(R1);
+
 
 		/*
 			Combine panels & display
@@ -635,5 +646,44 @@ public class RecipeBookGUI extends JFrame {
             g2d.setColor(this.borderColor);
             g2d.drawRoundRect(0, 0, getWidth()-2, getHeight()-2, 12, 12);
         }
+    }
+
+    public class drawRectangle extends JPanel{
+        private int x;
+        private int y;
+        private int width;
+        private int height;
+        private Color fillColor;
+        private Color borderColor;
+
+        public drawRectangle(int x, int y, int width, int height, String fill, String border){
+            //super();
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.fillColor = Color.decode(fill);
+            this.borderColor = Color.decode(border);
+        }
+
+        public drawRectangle(int x, int y, int width, int height, String fill){
+            super();
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.fillColor = Color.decode(fill);
+            this.borderColor = Color.decode(fill);
+        }
+
+        @Override
+        protected void paintComponent(Graphics g){
+            //Graphics2D g2 = (Graphics2D) g;
+            g.setColor(fillColor);
+            g.fillRect(0,0, width, height);
+            g.setColor(borderColor);
+            g.drawRect(0, 0, width, height);
+        }
+
     }
 }
