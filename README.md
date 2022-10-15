@@ -81,51 +81,57 @@ This is a GUI version of the program which was made using Java Swing. It has mos
 
 #### Recipe Book Page
 
-When the program starts the user has the same 4 options: Create Recipe, Retreieve Recipe, Modify Recipe, or Exit.
+When the program starts the user has the same 4 options: Create Recipe, Retrieve Recipe, Modify Recipe, or Exit.
 
-<img width="601" alt="recipebookgui" src="https://user-images.githubusercontent.com/82198103/195944723-ffd8257e-d02c-4e6e-bd97-99704767ea55.png">
+<img src="./images/GUI_home.png" alt="image-20221015184925516" style="zoom: 80%;" />
 
 #### Create Recipe Page
+
 The "Create Recipe" page features text fields where the user can submit a new recipe or go back to the main page.
 
-<img width="599" alt="recipecreategui" src="https://user-images.githubusercontent.com/82198103/195945111-583b3a60-6385-47f5-9a38-570b3773615a.png">
+<img src="./images/GUI_create.png" alt="image-20221015185001805" style="zoom: 80%;" />
 
 #### Retrieve Recipe Page
+
 The "Retrieve Recipe" page features three buttons which allow the user to browse all recipes, search for a recipe, or go back to the main page. 
 
-<img width="601" alt="reciperetrievegui" src="https://user-images.githubusercontent.com/82198103/195945315-40315de7-6302-4e32-b8b5-e7486c22d472.png">
+<img src="./images/GUI_Retrieve.png" alt="image-20221015185220331" style="zoom:80%;" />
 
 #### Browse Recipe Page
+
 The "Retrieve Recipe" page lists all the recipe names currently in the recipe book and a button that allows the user to go back to the main page. 
 
-<img width="599" alt="recipebrowsegui" src="https://user-images.githubusercontent.com/82198103/195945472-9163d169-8ac4-43e3-b367-05f890e09bcc.png">
+<img src="./images/GUI_browse.png" alt="image-20221015185314222" style="zoom:80%;" />
 
 #### Search For A Recipe Page
 The "Search For A Recipe" page allows the user to look up a recipe. It also has a button that allows the user to go back to the "Retrieve Recipe" page. 
 
 * If the recipe is found, the user is taken to the "Recipe Reading" page.
 
-<img width="598" alt="recipesearch1" src="https://user-images.githubusercontent.com/82198103/195945754-56cf094a-0677-47fe-81b9-801dcee60e72.png">
+<img src="./images/GUI_search.png" style="zoom:80%;" />
 
 * If the recipe is not found, the user gets a pop-up error message.
 
-<img width="600" alt="recipesearch2" src="https://user-images.githubusercontent.com/82198103/195945779-62b2cf8b-96d7-4ea4-880b-e310f6c02c9e.png">
+<img src="./images/GUI_search_not_found.png" alt="image-20221015185757168" style="zoom:80%;" />
 
 #### Recipe Reading page
+
 The "Recipe Reading" page allows the user to read a recipe in two ways: read the entire recipe or read its instructions step by step. It also has a button that allows the user to go back to the "Retrieve Recipe" page. 
 
 * The user can click "Read Entire Recipe" to see the whole recipe.
 
-<img width="599" alt="reciperead1" src="https://user-images.githubusercontent.com/82198103/195946020-d4a49889-783e-4828-a235-bd20baacb46a.png">
+<img src="./images/GUI_readall.png" alt="image-20221015185832790" style="zoom:80%;" />
 
 * The user can click "Read Recipe Steps Only" to read the instructions for the selected recipe step by step. A "Next Step" button appears at the button. When clicking on it, the user can see the next step.
 
-<img width="599" alt="reciperead2" src="https://user-images.githubusercontent.com/82198103/195946127-77ffae19-ba77-4fbe-812f-ba0fb8d09095.png">
+<img src="./images/GUI_readsteps.png" alt="image-20221015185921647" style="zoom:80%;" />
 
-#### Recipe Modifcation
-The "Recipe Modifcation" page will be implemented in the next update!
+#### Recipe Modification
 
-<img width="601" alt="recipemodify" src="https://user-images.githubusercontent.com/82198103/195946306-fe99850e-2820-45ac-ba8f-77f1a9192a7d.png">
+The "Recipe Modification" page will be implemented in the next update!
+
+<img src="./images/GUI_modify.png" alt="image-20221015190039006" style="zoom:80%;" />
 
 #### Exit
-Finally, the user can click "Exit" on the main page or the red "X" in the corner to close the program.
+Finally, the user can click "Exit" on the main page or the "X" in the corner to close the program.
+
