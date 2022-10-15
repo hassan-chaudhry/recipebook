@@ -26,6 +26,7 @@ public class RecipeBookGUI extends JFrame {
 	private ArrayList<Recipes> recipeList = new ArrayList<Recipes> ();	
 	private RecipeRetrieval data = new RecipeRetrieval();
 	private ArrayList<Recipes> hold = data.LoadRecipes();
+    public static String steps[];
 
 	public static void main(String args[]) {
 
@@ -258,19 +259,32 @@ public class RecipeBookGUI extends JFrame {
 
 		// create panel
 		pRead = new JPanel();
-		pRead.setBackground(new java.awt.Color(238,130,238));
+		pRead.setBackground(Color.decode("#FFFDE3"));
+        pRead.setLayout(null);
 
 		// create labels
-		lRead = new JLabel("                                                 Recipe Reading                                                 "); // spaces for formatting purposes
-		lRead.setForeground(Color.WHITE);
+		lRead = new JLabel("Recipe Reading",JLabel.CENTER); // spaces for formatting purposes
+        lRead.setBounds(0,0,600,100);
+        lRead.setFont(new Font("Serif", Font.BOLD, 40));
 
 		// create text fields
 		readRecipeTA = new JTextArea("", 15, 45);
+        readRecipeTA.setBounds(70,150,440,200);
 
 		// create buttons
 		bReadEntire = new JButton("Read Entire Recipe");
+        bReadEntire.setBounds(70,100,200,40);
+
 		bReadSteps = new JButton("Read Recipe Steps Only");
+        bReadSteps.setBounds(310,100,200,40);
+
 		bBack6 = new JButton("Go Back");
+        bBack6.setBounds(170,380,250,50);
+
+        bNext = new JButton("Next Step");
+        bNext.setBounds(400,340,100,30);
+        pRead.add(bNext);
+        bNext.setVisible(false);
 
 		// add all components to pRead
 		pRead.add(lRead);
@@ -466,31 +480,31 @@ public class RecipeBookGUI extends JFrame {
 				readRecipeTA.setText("Recipe Steps for " + readRecipe.getName() + ": \n");
 
 				// button to get next step
-				bNext = new JButton("Next Step");
-				pRead.add(bNext);
 				bNextExist = true;
 				bNext.setVisible(true);
 
 				// set up iteration counter
 				stepCounter = 0;
-				String steps[] = readRecipe.getSteps().split("(?<=.  )"); 
+				steps = readRecipe.getSteps().split("(?<=.  )"); 
 				readRecipeTA.append(steps[stepCounter] + " \n"); // display first recipe step
 
-				bNext.addActionListener(new ActionListener() { // iterates through & displays rest of recipe steps 
-					public void actionPerformed(ActionEvent ae) {  
-					stepCounter++;
-					if (stepCounter < steps.length) { 
-						readRecipeTA.append(steps[stepCounter] + " \n"); // print next step
-					}
 
-					if (stepCounter >= steps.length) { // if all steps printed, remove "Next Step" button
-						bNext.setVisible(false);
-					}
-
-				}			  
-				});
 			}		  
 		}); 
+
+        bNext.addActionListener(new ActionListener() { // iterates through & displays rest of recipe steps 
+            public void actionPerformed(ActionEvent ae) {  
+            stepCounter++;
+            if (stepCounter < steps.length) { 
+                readRecipeTA.append(steps[stepCounter] + " \n"); // print next step
+            }
+
+            if (stepCounter >= steps.length) { // if all steps printed, remove "Next Step" button
+                bNext.setVisible(false);
+            }
+
+        }			  
+        });
 
 		bModify.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent ae) {  
