@@ -124,22 +124,26 @@ public class RecipeBookGUI extends JFrame {
         lCreation1.setBounds(50, 70, 600, 40);
 		recipeNameTF = new roundTextField("", 30, Color.decode("#EEF2E6"), Color.decode("#82A284"));
         recipeNameTF.setBounds(50, 100, 485, 30);
+        recipeNameTF.setMargin(new Insets(0,10,0,10));
 
 		lCreation2 = new JLabel("Enter recipe description: ");
         lCreation2.setBounds(50, 125, 600, 40);
 		recipeDescriptionTF = new roundTextField("", 30, Color.decode("#EEF2E6"), Color.decode("#82A284"));
         recipeDescriptionTF.setBounds(50, 155, 485, 30);
+        recipeDescriptionTF.setMargin(new Insets(0,10,0,10));
 
 		lCreation3 = new JLabel("Enter recipe ingredients (place each ingredient on a new line): ");
         lCreation3.setBounds(50, 180, 600, 40);
         recipeIngredientsTA = new roundTextArea("", 10, 45, Color.decode("#EEF2E6"), Color.decode("#82A284"));
         recipeIngredientsTA.setBounds(50, 210, 485, 60);
+        recipeIngredientsTA.setMargin(new Insets(5,10,10,10));
 
 		lCreation4 = new JLabel("Enter recipe steps (place each step on a new line): ");
         lCreation4.setBounds(50, 265, 600, 40);
         recipeStepsTA = new roundTextArea("", 10, 45, Color.decode("#EEF2E6"), Color.decode("#82A284"));
         recipeStepsTA.setBounds(50, 295, 485, 100);
-        
+        recipeStepsTA.setMargin(new Insets(5,10,10,10));
+
 		// create buttons
 		bRecipeToCreate = new roundButton("Submit",Color.decode("#FFFDE3"),Color.decode("#FFFDE3"));
         bRecipeToCreate.setBounds(330, 410, 170, 35);
@@ -179,17 +183,17 @@ public class RecipeBookGUI extends JFrame {
         JLabel lRetrieval2 = new JLabel("Retrieval",JLabel.RIGHT);
         lRetrieval1.setFont(new Font("Serif", Font.BOLD, 70));
         lRetrieval2.setFont(new Font("Serif", Font.BOLD, 70));
-        lRetrieval1.setBounds(0,130,300,100);
+        lRetrieval1.setBounds(0,130,228,100);
         lRetrieval2.setBounds(0,200,300,100);
 
 		// create buttons
 		bBrowse = new roundButton("Browse Recipes", Color.decode("#FFFDE3"), Color.decode("#E3C770"),3);
-        bBrowse.setBounds(340, 80, 200, 80);
+        bBrowse.setBounds(340, 100, 200, 80);
 		bSearch = new roundButton("Search For A Recipe", Color.decode("#FFFDE3"), Color.decode("#E3C770"),3);
-        bSearch.setBounds(340, 180, 200, 80);
+        bSearch.setBounds(340, 200, 200, 80);
 		bBack2 = new roundButton("Go Back", Color.decode("#E3C770"));
         //bBack2.setForeground(Color.decode("#FFFDE3"));
-        bBack2.setBounds(340, 300, 200, 100);
+        bBack2.setBounds(340, 300, 200, 80);
 
 		// add all components to panel
 		//pRetrieval.add(lRetrieval);
@@ -205,18 +209,25 @@ public class RecipeBookGUI extends JFrame {
 
 			// create panel
 			pBrowse = new JPanel();
-			pBrowse.setBackground(new java.awt.Color(102, 204, 255));
+			pBrowse.setBackground(Color.decode("#FFFDE3"));
+            pBrowse.setLayout(null);
 
 			// create labels
 			lBrowse = new JLabel("Browse Recipes");
-			lBrowse.setForeground(Color.WHITE);
+			//lBrowse.setForeground(Color.WHITE);
+            lBrowse.setBounds(70,20,600,100);
+            lBrowse.setFont(new Font("Serif", Font.BOLD, 40));
 
 			// get all recipes
 			String allRecipes = RecipeRetrieval.allRecipeNames(); // returns string of recipe list where recipes are seperated by \n
-			recipes = new JTextArea(allRecipes, 15, 45);
-
+			recipes = new roundTextArea(allRecipes, 15, 45, Color.decode("#FEFEEE"), Color.decode("#E3C770"));
+            recipes.setBounds(70,110,440,220);
+            recipes.setEditable(false);
+            recipes.setMargin(new Insets(15,15,15,15) );
+            recipes.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 15));
 			// create buttons
-			bBack4 = new JButton("Go Back");
+			bBack4 = new roundButton("Go Back", Color.decode("#E3C770"));
+            bBack4.setBounds(300,350,210,40);
 
 			// add all components to panel
 			pBrowse.add(lBrowse);
