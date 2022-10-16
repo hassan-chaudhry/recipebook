@@ -173,7 +173,10 @@ public class RecipeRetrieval {
             obj = new Scanner(System.in);
     
             System.out.println("If there's a recipe you want to read in details, please enter its number. Otherwize please enter 0.\n");
-             choice = obj.nextInt();
+            choice = -1;
+            if (obj.hasNextInt()){
+                choice = obj.nextInt();
+            } 
             
             if (choice < 0 || choice >list.size()){
                 System.out.println("Invalid Input. Please try again.\n");
@@ -200,7 +203,10 @@ public class RecipeRetrieval {
             obj = new Scanner(System.in);
     
             System.out.println("Choosing mode: Please choose the recipe you want to modify. Enter 0 to switch to searching mode. \n");
-             choice = obj.nextInt();
+            choice = -1;
+            if (obj.hasNextInt()){
+                choice = obj.nextInt();
+            }
             
             if (choice < 0 || choice >list.size()){
                 System.out.println("Invalid Input. Please try again.\n");
